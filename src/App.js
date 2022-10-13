@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <h1>Bienvenidos a la app de Kodificados </h1>
+          <h1>Bienvenidos a la app de Kodifikados </h1>
 
           <p> ... en desarrollo</p>
           <img src={ work } alt="trabajando" />
