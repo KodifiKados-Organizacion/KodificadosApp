@@ -1,6 +1,26 @@
 .footer {
-    width: 100%;
-    height: 20%;
+    align-content: center;
     background-color: black;
     color: white;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 25px;
+    width: 96%;
+}
+
+.container-redes {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    text-decoration: none;
+}
+
+.container-contacto {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.containers-contacto {
+    width: 40%;
 }
