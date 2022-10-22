@@ -1,27 +1,27 @@
 import React from 'react'
-import About from '../../pages/About/About'
-import admins from '../../pages/Admins/admins'
-import clientes from '../../pages/clientes/clientes'
-import index from '../../index'
+// import About from '../../pages/About/About'
+// import admins from '../../pages/Admins/admins'
+// import clientes from '../../pages/clientes/clientes'
+// import index from '../../index'
 import '../../styles/Header.css'
 
 export const Header = () => {
-  let Component
-  switch (window.location.pathname){
+  // let Component
+  // switch (window.location.pathname){
     
-    case "/":
-      Component = <index/>
-      break
-      case "/clientes":
-        Component = clientes
-        break
-        case "/admins":
-          Component =  admins
-          break
-          case "/About":
-            Component = About
-            break
-  }
+  //   case "/":
+  //     Component = <index/>
+  //     break
+  //     case "/clientes":
+  //       Component = clientes
+  //       break
+  //       case "/admins":
+  //         Component =  admins
+  //         break
+  //         case "/About":
+  //           Component = About
+  //           break
+  // }
   return (
 
     <nav className="nav">
