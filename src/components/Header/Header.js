@@ -1,40 +1,21 @@
 import React from 'react'
-// import About from '../../pages/About/About'
-// import admins from '../../pages/Admins/admins'
-// import clientes from '../../pages/clientes/clientes'
-// import index from '../../index'
-import '../../styles/Header.css'
+import { Link } from 'react-router-dom'
+import '../../styles/components/Header.css'
 
 export const Header = () => {
-  // let Component
-  // switch (window.location.pathname){
-    
-  //   case "/":
-  //     Component = <index/>
-  //     break
-  //     case "/clientes":
-  //       Component = clientes
-  //       break
-  //       case "/admins":
-  //         Component =  admins
-  //         break
-  //         case "/About":
-  //           Component = About
-  //           break
-  // }
   return (
 
     <nav className="nav">
-      <a href="/" className='site-title'>Kodificados</a>
+      <Link to="/" className='site-title'>Kodificados</Link>
       <ul>
         <li>
-          <a href="#">Clientes</a>
+          <Link to='Cliente'>Clientes</Link>
           </li>
           <li>
-          <a href="#">Admin</a>
+          <Link to='Admin'>Admin</Link>
         </li>
         <li>
-          <a href="/About">Nosotros</a>
+          <Link to='About'>Nosotros</Link>
         </li>
       </ul>
 
@@ -52,4 +33,5 @@ export const Header = () => {
     </div> */
   )
 }
+
 
