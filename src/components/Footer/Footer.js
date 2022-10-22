@@ -1,6 +1,5 @@
-import React from 'react'
 import '../../styles/components/Footer.css'
-import logo  from '../../assets/imgs/logo10_19_20826.png'
+import logo  from '../../assets/imgs/logo10_22_162944.png'
 
 
 export const Footer = () => {
@@ -12,7 +11,7 @@ export const Footer = () => {
         </span>
         <span className='containers-contacto'>
           <h3>Quienes somos?</h3>
-          <p>somos una empresa creada para solucionar los problemas de pequeñas empresas para entrar en la web, ofrecemos soluciones de diseño, creacion y mantenimiento de plataformas web y movil.</p>
+          <p>somos una empresa que provee todo tipo de productos tecnologicos</p>
         </span>
         <span className='containers-contacto'>
           <h3>Contactanos</h3>

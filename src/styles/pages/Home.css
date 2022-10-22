@@ -1,15 +1,16 @@
 .titlecarousel {
     display: flex;
     justify-content: center;
-    padding-top: 25px;
+    padding-top: 15px;
     color: #652ec5;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .carousel {
     width: 100%;
-    overflow: scroll;
-    padding: 30px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 20px;
     position: relative;
     display: flex;
     justify-content: space-around;
@@ -17,7 +18,7 @@
 
 .carousel__container {
     white-space: nowrap;
-    margin: 70px 0px;
+    margin: 40px 0px;
     padding-bottom: 10px;
 }
 
@@ -29,7 +30,7 @@
     border-radius: 20px;
     box-shadow: #652ec5 3px 2px;
     overflow: hidden;
-    margin-right: 10px;
+    margin-right: 15px;
     display: inline-block;
     cursor: pointer;
     transition: 450ms all;
@@ -55,4 +56,10 @@
     width: 200px;
     height: 220px;
     object-fit: cover;
+}
+
+.info-item {
+    color: whitesmoke;
+    font-size: 20px;
+    display: block;
 }
