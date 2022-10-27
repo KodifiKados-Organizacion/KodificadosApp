@@ -1,5 +1,9 @@
+import Registro from "../../components/Cliente/Registro"
+
 export const Clientes = () => {
   return (
-    <div>Clientes</div>
+    <div>
+      <Registro></Registro>
+      Clientes</div>
   )
 }
