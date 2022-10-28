@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/components/Header.css'
 import logo from '../../assets/imgs/logo10_22_162944.png'
 
 export const Header = () => {
+  const [LoginState, setLoginState] = useState(false)
+  let LoginUser;
+
+   if(LoginState == false){
+          LoginUser=<li>
+                      <Link to='Login'> Login </Link>
+                    </li>
+         
+}else{
+        LoginUser=<li>
+                  <Link to='Login' onClick={ setLoginState(false) }>Logout</Link>
+                  </li>
+} 
+
+ console.log(LoginState);
+
   return (
 
     <nav className="nav">
@@ -20,20 +36,13 @@ export const Header = () => {
         <li>
           <Link to='About'>Nosotros</Link>
         </li>
+        {LoginUser}
+       
       </ul>
 
+
+
     </nav>
-
-    
-
-    
-
-    
-/*     <div>
-        <header>
-            <h1>Bienvenidos</h1>
-        </header>
-    </div> */
   )
 }
 
