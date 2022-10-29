@@ -3,23 +3,24 @@ import "../../styles/components/cards.css";
 import Cards from "./Cards";
 import Carrito from "../Carrito/Carrito";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Lista = () => {
+const Lista = (props) => {
   const [carrito, setcarrito] = useState([]);
   const [productos_carro, setproductoscarro] = useState([]);
   return (
     <div>
       <nav className="nav">
-
+        {props.buttom === "Agregar" ? 
         <button
           type="button"
-          class="btn btn-primary position-relative"
+          className="btn btn-primary position-relative"
           data-bs-toggle="modal"
           data-bs-target="#carrito"
         >
           {carrito.length}
           <i className="ri-shopping-cart-fill"></i>
-        </button>
+        </button>: <Link to='Ventas'> <ion-icon name="cash-outline"></ion-icon> </Link>  }
       </nav>
       <h1>Catalogo</h1>
 
@@ -30,6 +31,7 @@ const Lista = () => {
             setcarrito={setcarrito}
             carrito={carrito}
             key={producto.name}
+            buttom = {props.buttom}
           />
         ))}
       </div>
@@ -37,7 +39,7 @@ const Lista = () => {
       <div
         className="modal fade"
         id="carrito"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >

@@ -4,6 +4,6 @@ import '../../styles/pages/Cliente.css'
 export const Clientes = () => {
   return (
     <div className="container-cliente-page">
-      <Lista></Lista></div>
+      <Lista buttom="Agregar"></Lista></div>
   )
 }
