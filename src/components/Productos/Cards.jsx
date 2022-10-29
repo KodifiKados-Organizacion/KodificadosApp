@@ -2,7 +2,7 @@ const Cards = ({ producto, setcarrito, carrito }) => {
     let newproducto = [];
     return (
       <>
-        <div className="card" style={{ width: "18rem" }}>
+        <div className="card bg-gray" style={{ width: "18rem" }}>
           <img src={producto.urlImagen} class="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title">{producto.category}</h5>
