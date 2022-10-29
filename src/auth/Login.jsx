@@ -3,32 +3,32 @@ const Login = () => {
     <>
       <form action="" className="row">
         <h1>Bienvenido a Kodificados</h1>
-        <div class="input-group flex-nowrap mb-3">
-          <span class="input-group-text" id="addon-wrapping">
-            <i class="ri-user-2-line"></i>
+        <div className="input-group flex-nowrap mb-3">
+          <span className="input-group-text" id="addon-wrapping">
+            <i className="ri-user-2-line"></i>
           </span>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder="Username"
             aria-label="Username"
             aria-describedby="addon-wrapping"
           />
         </div>
-        <div class="input-group flex-nowrap mb-3">
-          <span class="input-group-text" id="addon-wrapping">
-            <i class="ri-lock-password-line"></i>
+        <div className="input-group flex-nowrap mb-3">
+          <span className="input-group-text" id="addon-wrapping">
+            <i className="ri-lock-password-line"></i>
           </span>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             placeholder="Username"
             aria-label="Username"
             aria-describedby="addon-wrapping"
           />
         </div>
         <button
-          class="btn"
+          className="btn"
           style={{ backgroundColor: "#7487f2", color: "white" }}
         >
           Ingresar

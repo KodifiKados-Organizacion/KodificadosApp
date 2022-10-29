@@ -1,7 +1,9 @@
+import Lista from "../../components/Productos/Lista"
+
 export const Admins = () => {
   return (
     <div>
-      <h1>Admins</h1>
+      <Lista buttom="Editar"/>
     </div>
   )
 }

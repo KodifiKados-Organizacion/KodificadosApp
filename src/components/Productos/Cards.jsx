@@ -1,9 +1,42 @@
-const Cards = ({ producto, setcarrito, carrito }) => {
+import { useSearchParams } from "react-router-dom";
+
+const Cards = ({ producto, setcarrito, carrito, buttom}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
     let newproducto = [];
+    const HandleClick = () => {
+        switch (buttom) {
+            case "Agregar":
+              setcarrito([...carrito, producto]);
+                console.log(producto.id);
+              break;
+            case "Editar": 
+                console.log(producto.id);
+                if(producto !== undefined){
+                    setSearchParams({"producto": producto.id});
+                    console.log(searchParams);
+                    window.location.href = "/Admin/EditProduct?producto=" + producto.id;
+                }else{
+                    console.log("no se pudo editar")
+                }
+                break;
+        }
+    }
+
+    const HandleDelete =() => {
+        switch (buttom) {
+            case "Agregar":
+                console.log("no se puede eliminar")
+                break;
+            case "Editar":
+                console.log("eliminando");
+                alert("eliminando producto "+ producto.id); 
+                break;
+        }
+    }
     return (
       <>
-        <div className="card bg-gray" style={{ width: "18rem" }}>
-          <img src={producto.urlImagen} class="card-img-top" alt="..." />
+        <div className="card" key={ producto.name } style={{ width: "18rem" }}>
+          <img src={producto.urlImagen} className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title">{producto.category}</h5>
             <p className="card-text">{producto.name}</p>
@@ -13,13 +46,16 @@ const Cards = ({ producto, setcarrito, carrito }) => {
           <div className="card-footer">
             <button
               className="btn btn-primary"
-              onClick={() => setcarrito([...carrito, producto])}
+              onClick={HandleClick}
             >
-              <i className="ri-shopping-cart-line"></i> <small>agregar</small>
+              <span> {buttom === "Agregar" ? <i className="ri-shopping-cart-fill" ></i> : <ion-icon name="pencil-outline"></ion-icon> }</span>
+                
+              
+               <small>{ buttom }</small>
             </button>
-            <a href="#" className="btn btn-danger">
+            <button onClick={ HandleDelete } className="btn btn-danger">
               <i className="ri-delete-bin-line"></i> <small>Quitar</small>
-            </a>
+            </button>
           </div>
         </div>
       </>
@@ -27,4 +63,3 @@ const Cards = ({ producto, setcarrito, carrito }) => {
   };
   
   export default Cards;
-  
