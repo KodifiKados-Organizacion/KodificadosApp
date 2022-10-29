@@ -1,9 +1,9 @@
-import Registro from "../../components/Cliente/Registro"
+import Lista from "../../components/Productos/Lista"
+
 
 export const Clientes = () => {
   return (
     <div>
-      <Registro></Registro>
-      Clientes</div>
+      <Lista></Lista></div>
   )
 }

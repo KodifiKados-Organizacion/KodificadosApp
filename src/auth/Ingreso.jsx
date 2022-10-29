@@ -1,5 +1,5 @@
 import Registro from "./Registro";
-import Login from "./Login";
+import {Login} from "./login";
 
 import {  useState } from "react";
 

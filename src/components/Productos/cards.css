@@ -1,0 +1,7 @@
+.container-products {
+    display: grid;
+    gap: 1rem;
+    justify-content: space-around;
+    grid-template-columns: repeat(3, 200px);
+  }
+  

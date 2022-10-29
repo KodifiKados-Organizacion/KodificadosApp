@@ -1,29 +1,37 @@
 import { useState } from "react";
-
+import { useForm } from "../../hooks/useForm";
 const Registro = () => {
-  const [nombre, setnombre] = useState();
-  const [identificacion, setidentificacion] = useState();
-  const [apellidos, setapellidos] = useState();
-  const [edad, setEdad] = useState();
-  const [telefono, setTelefono] = useState([]);
-  const [direccion, setDireccion] = useState([]);
+  const [Registro, setRegistro] = useState({});
+  const [formValues, hadleInputChange ] = useForm({
+    Nombre: "",
+    Apellidos: "",
+    Identificacion: "",
+    Password: "",
+    VPassword: "",
+    Celular: "",
+    Telefono: "",
+    Email: "",
+    Ciudad: "",
+    Direccion: "",
+    CodPostal: ""
+  });
+  const { Nombre, Apellidos, Identificacion, Password, VPassword, Celular, Telefono, Email, Ciudad, Direccion, CodPostal }= formValues
   const HandleSubmit = (event) => {
     event.preventDefault();
-    
-     if (nombre==""||nombre==undefined){
-        alert("nombre es requerido")
-
-     }
-
-    
-   
   };
+  const HandleClick = (e) => {
+      e.preventDefault();
+      setRegistro({formValues})
+      console.log(Registro);
+    };
+
+
   return (
     <div className="card col-8 my-3 mx-auto">
       <div className="card-header">Registro</div>
 
       <div className="card-body">
-        <form onSubmit={HandleSubmit}>
+        <form onChange={HandleSubmit}>
           <div className=" ">
             {/**Informacion de contacto*/}
             <div className="row">
@@ -42,7 +50,9 @@ const Registro = () => {
                     placeholder="Nombre"
                     aria-label="Username"
                     aria-describedby="basic-addon1"
-                    onChange={(e)=>setnombre(e.target.value)}
+                    name="Nombre"
+                    value={ Nombre }
+                    onChange={ hadleInputChange }
                   />
                 </div>
                 <div className="input-group mb-3">
@@ -56,7 +66,9 @@ const Registro = () => {
                     placeholder="Apellidos"
                     aria-label="Username"
                     aria-describedby="basic-addon1"
-                    onChange={(e)=>setapellidos(e.target.value)}
+                    name="Apellidos"
+                    value={Apellidos}
+                    onChange={hadleInputChange}
                   />
                 </div>
                 <div className="input-group mb-3">
@@ -69,7 +81,41 @@ const Registro = () => {
                     className="form-control"
                     placeholder="Identificacion"
                     aria-label="Username"
-                    onChange={(e) => setidentificacion(e.target.value)}
+                    name="Identificacion"
+                    value={ Identificacion }
+                    onChange={ hadleInputChange }
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">
+                  <p>*</p>
+                  <ion-icon name="lock-closed-outline"></ion-icon>
+                  </span>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Contraseña"
+                    aria-label="Username"
+                    name="Password"
+                    value={ Password }
+                    onChange={ hadleInputChange }
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">
+                  <p>*</p>
+                  <ion-icon name="lock-closed-outline"></ion-icon>
+                  </span>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Verifica tu contraseña"
+                    aria-label="Username"
+                    name="VPassword"
+                    value={ VPassword }
+                    onChange={ hadleInputChange }
                     aria-describedby="basic-addon1"
                   />
                 </div>
@@ -80,27 +126,31 @@ const Registro = () => {
               <div className="d-flex ">
                 <div className="input-group mb-3  w-3">
                   <span className="input-group-text" id="basic-addon1">
-                    <i class="ri-cellphone-fill"></i>
+                    <i className="ri-cellphone-fill"></i>
                   </span>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     placeholder="celular"
                     aria-label="Username"
-                    onChange={(e) => setTelefono(e.target.value)}
+                    name="Celular"
+                    value={Celular}
+                    onChange={hadleInputChange}
                     aria-describedby="basic-addon1"
                   />
                 </div>
                 <div className="input-group mb-3 w-10">
                   <span className="input-group-text" id="basic-addon1">
-                    <i class="ri-phone-fill"></i>
+                    <i className="ri-phone-fill"></i>
                   </span>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
-                    placeholder="Fijo"
+                    placeholder="Telefono"
                     aria-label="Username"
-                    onChange={(e) => setidentificacion(e.target.value)}
+                    name="Telefono"
+                    value={ Telefono }
+                    onChange={ hadleInputChange }
                     aria-describedby="basic-addon1"
                   />
                 </div>
@@ -109,11 +159,13 @@ const Registro = () => {
                     <i className="ri-file-user-fill"></i>
                   </span>
                   <input
-                    type="text"
+                    type="email"
                     className="form-control"
-                    placeholder="fax"
+                    placeholder="Email"
                     aria-label="Username"
-                    onChange={(e) => setidentificacion(e.target.value)}
+                    name="Email"
+                    value={ Email }
+                   onChange={hadleInputChange}
                     aria-describedby="basic-addon1"
                   />
                 </div>
@@ -124,47 +176,53 @@ const Registro = () => {
               <span>Direccion de Contacto</span>
               <div className="input-group mb-3 col-sm-3">
                 <span className="input-group-text" id="basic-addon1">
-                  <i class="ri-map-2-line"></i>
+                  <i className="ri-map-2-line"></i>
                 </span>
                 <input
                   type="text"
                   className="form-control"
                   placeholder="ciudad"
                   aria-label="Username"
-                  onChange={(e) => setidentificacion(e.target.value)}
+                  name="Ciudad"
+                  value={ Ciudad }
+                  onChange={ hadleInputChange }
                   aria-describedby="basic-addon1"
                 />
               </div>
               <div className="input-group mb-3 col-2">
                 <span className="input-group-text" id="basic-addon1">
-                  <i class="ri-map-pin-2-fill"></i>
+                  <i className="ri-map-pin-2-fill"></i>
                 </span>
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Direccion"
                   aria-label="Username"
-                  onChange={(e) => setidentificacion(e.target.value)}
+                  name="Direccion"
+                  value={ Direccion }
+                  onChange={ hadleInputChange }
                   aria-describedby="basic-addon1"
                 />
               </div>
               <div className="input-group mb-3 col-3">
                 <span className="input-group-text" id="basic-addon1">
-                  <i class="ri-map-pin-add-line"></i>
+                  <i className="ri-map-pin-add-line"></i>
                 </span>
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Codigo Postal"
                   aria-label="Username"
-                  onChange={(e) => setidentificacion(e.target.value)}
+                  name="CodPostal"
+                  value={ CodPostal }
+                  onChange={ hadleInputChange }
                   aria-describedby="basic-addon1"
                 />
               </div>
             </div>
           </div>
-
-          <input type="submit" value="Submit" className="btn btn-default" />
+          <button onClick={HandleClick} className="btn btn-default" >Registrar</button>
+       
         </form>
       </div>
       {/*<ul className="list-group list-group-flush">
