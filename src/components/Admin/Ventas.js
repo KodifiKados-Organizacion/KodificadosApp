@@ -2,7 +2,7 @@ import '../../styles/components/ventas.css'
 
 export const Ventas = () => {
   return (
-    <div>
+    <div className='container_ventas'>
         <h1>Ventas</h1>
 
         <table className='tabla-ventas'>
