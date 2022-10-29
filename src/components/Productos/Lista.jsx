@@ -1,5 +1,5 @@
 import { PRODUCTS } from "./../../data/products";
-import "./cards.css";
+import "../../styles/components/cards.css";
 import Cards from "./Cards";
 import Carrito from "../Carrito/Carrito";
 import { useState } from "react";
@@ -21,7 +21,7 @@ const Lista = () => {
           <i className="ri-shopping-cart-fill"></i>
         </button>
       </nav>
-      <h1>Vista Cliente</h1>
+      <h1>Catalogo</h1>
 
       <div className="container-products">
         {PRODUCTS.map((producto) => (

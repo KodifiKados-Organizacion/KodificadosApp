@@ -1,9 +1,9 @@
 import Lista from "../../components/Productos/Lista"
-
+import '../../styles/pages/Cliente.css'
 
 export const Clientes = () => {
   return (
-    <div>
+    <div className="container-cliente-page">
       <Lista></Lista></div>
   )
 }
