@@ -5,8 +5,8 @@ import { AboutUs } from '../pages/about/AboutUs'
 import { Admins } from '../pages/admins/Admins'
 import { Clientes } from '../pages/clientes/clientes'
 import { Home } from '../pages/home/Home'
-import {Ingreso} from"../auth/Ingreso"
-import {Registro} from"../components/Cliente/Registro"
+import Ingreso from"../auth/Ingreso"
+import Registro from"../components/Cliente/Registro"
 
 
 export const Router = () => {

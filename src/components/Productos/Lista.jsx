@@ -70,7 +70,7 @@ const Lista = () => {
                 Close
               </button>
               <button type="button" className="btn btn-primary">
-                Realizar compra
+                Finalizar compra
               </button>
             </div>
           </div>
