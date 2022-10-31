@@ -1,17 +1,13 @@
-import work from './assets/imgs/Video Conference Presentation.gif'
-import './App.css';
-
+import './styles/App.css';
+import {Header} from './components/Header/Header';
+import { Footer } from './components/Footer/Footer'
+import { Router } from './routers/Router';
 function App() {
-  let date = Date();
   return (
     <div className="App">
-      <header className="App-header">
-          <h1>Bienvenidos a la app de Kodifikados </h1>
-
-          <p> ... en desarrollo <br></br> { date }</p>
-          <img src={ work } alt="trabajando" />
-
-      </header>
+        <Header />
+        <Router />
+        <Footer />
     </div>
   );
 }

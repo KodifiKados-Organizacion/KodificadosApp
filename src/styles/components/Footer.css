@@ -1,0 +1,30 @@
+.footer {
+    align-content: center;
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 25px;
+    width: 100%;
+}
+
+.container-redes {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    text-decoration: none;
+}
+
+.container-contacto {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.containers-contacto {
+    width: 40%;
+}
+
+.logo-footer {
+    height: 100px;
+}
