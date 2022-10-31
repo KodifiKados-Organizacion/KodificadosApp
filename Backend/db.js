@@ -70,21 +70,11 @@ const ProductSchema = mongoose.Schema({
     Nombre: String,
     Descripcion: String,
     Precio: Number,
+    PrecioVenta: Number,
     Cantidad: Number,
     Categoria: String,
     Imagen: String,
-    Estado: String,
     FechaIngreso: String,
-    FechaVenta: String,
-    CantidadVendida: Number,
-    IdVendedor: Number,
-    NombreVendedor: String,
-    ApellidoVendedor: String,
-    EmailVendedor: String,
-    IdComprador: Number,
-    NombreComprador: String,
-    ApellidoComprador: String,
-    EmailComprador: String,
 });
 
 // modelo de Producto
@@ -102,7 +92,7 @@ async function createProduct(product) {
 async function getProducts() {
     const products = await ProductModel
         .find()
-        .select({ Nombre: 1, Descripcion: 1, Precio: 1, Cantidad: 1, Categoria: 1, Imagen: 1, Estado: 1, FechaIngreso: 1, FechaVenta: 1, CantidadVendida: 1, IdVendedor: 1, NombreVendedor: 1, ApellidoVendedor: 1, EmailVendedor: 1, IdComprador: 1, NombreComprador: 1, ApellidoComprador: 1, EmailComprador: 1 });
+        .select({ Nombre: 1, Descripcion: 1, Precio: 1, PrecioVenta: 1, Cantidad: 1, Categoria: 1, Imagen: 1,  FechaIngreso: 1, });
     console.log(products);
 }
 
