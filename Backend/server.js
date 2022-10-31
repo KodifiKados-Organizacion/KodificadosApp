@@ -6,22 +6,23 @@ import { createRegister, getRegisters, updateRegister, deleteRegister } from "./
 const app = express();
 app.listen(5000, () => console.log("Server running on port 5000"));
 
-createRegister({
-    Nombre: 'Samuel',
-    Apellido: 'Rodriguez Gomez',
-    Email: 'Sam123@gmail.com',
-    Telefono: '321654987',
-    Direccion: 'Calle 64A # 113F- 23',
-    Ciudad: 'Bogota',
-    Estado: 'Activo',
-    CodigoPostal: '111031',
-    FechaIngreso: '2022-10-29',
-    Admin: true
-});
+// createRegister({
+//     Nombre: 'Samuel',
+//     Apellido: 'Rodriguez Gomez',
+//     Email: 'Sam123@gmail.com',
+//     Telefono: '321654987',
+//     Direccion: 'Calle 64A # 113F- 23',
+//     Ciudad: 'Bogota',
+//     Estado: 'Activo',
+//     CodigoPostal: '111031',
+//     FechaIngreso: '2022-10-29',
+//     Admin: true
+// });
 
 getRegisters();
 
-// deleteRegister('635ec2da4c1db74ad5a97347')
+//deleteRegister('635f17412883cda213e64c71')
+
 
 // updateRegister('635ecd6ede7383a3df90c039', { 
 //     Nombre: 'William',
