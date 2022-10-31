@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Login } from '../auth/login'
 import { AboutUs } from '../pages/about/AboutUs'

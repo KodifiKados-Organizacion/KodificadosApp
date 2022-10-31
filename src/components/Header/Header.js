@@ -7,7 +7,7 @@ export const Header = () => {
   const [LoginState, setLoginState] = useState(false)
   let LoginUser;
 
-   if(LoginState == false){
+   if(LoginState === false){
           LoginUser=<li>
                       <Link to='Login'> Login </Link>
                     </li>
