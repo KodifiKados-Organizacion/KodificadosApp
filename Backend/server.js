@@ -1,7 +1,9 @@
 import  express from "express";
 import "./db.js";
-import { createRegister, getRegisters, updateRegister, deleteRegister } from "./db.js";
-
+import { createRegister, getRegisters, getRegister, updateRegister, deleteRegister, createProduct, getProducts,
+    getProduct, updateProduct, deleteProduct, createCategory, getCategories, getCategory, updateCategory,
+    deleteCategory, createSale, getSales, getSale, deleteSale, updateSale } from "./db.js";
+ 
 
 const app = express();
 app.listen(5000, () => console.log("Server running on port 5000"));
@@ -21,8 +23,7 @@ app.listen(5000, () => console.log("Server running on port 5000"));
 
 getRegisters();
 
-//deleteRegister('635f17412883cda213e64c71')
-
+// deleteRegister('635ede643457b99655a9865c')
 
 // updateRegister('635ecd6ede7383a3df90c039', { 
 //     Nombre: 'William',
