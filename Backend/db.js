@@ -11,6 +11,7 @@ const RegisterSchema = mongoose.Schema({
     Nombre: String,
     Apellido: String,
     Email: String,
+    Password: String,
     Telefono: String,
     Direccion: String,
     Ciudad: String,
@@ -31,11 +32,54 @@ async function createRegister(register) {
     console.log(result);
 }
 
+createRegister({
+    Nombre: 'William',
+    Apellido: 'Rodriguez Rojas',
+    Email: 'william997@gmail.com',
+    Password: '123456',
+    Telefono: '321 301 92 61',
+    Direccion: 'Calle 64A # 113F - 23',
+    Ciudad: 'Bogota',
+    Estado: 'Bogota D.C.',
+    CodigoPostal: '111031',
+    FechaIngreso: '2022-10-21',
+    Admin: true,
+});
+
+createProduct({
+    Nombre: 'Producto 1',
+    Descripcion: 'Descripcion del producto 1',
+    Precio: 100,
+    PrecioVenta: 200,
+    Cantidad: 10,
+    Categoria: 'Categoria 1',
+    Imagen: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F816459304153991549%2F&psig=AOvVaw3WJ6Y5Ymz0YdIaZ9XWt6gj&ust=1630595687490000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjB2K2Q3_ICFQAAAAAdAAAAABAD',
+    FechaIngreso: '2021-09-01',
+});
+
+getProducts();
+
+getProduct('6142b3c3f8d1f0c3e8b3b0d9');
+
+updateProduct('6142b3c3f8d1f0c3e8b3b0d9', {
+    Nombre: 'Producto 2',
+    Descripcion: 'Descripcion del producto 2',
+    Precio: 200,
+    PrecioVenta: 400,
+    Cantidad: 20,
+    Categoria: 'Categoria 2',
+    Imagen: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F816459304153991549%2F&psig=AOvVaw3WJ6Y5Ymz0YdIaZ9XWt6gj&ust=1630595687490000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjB2K2Q3_ICFQAAAAAdAAAAABAD',
+    FechaIngreso: '2021-09-01',
+});
+
+deleteProduct('614
+
+
 //Metodo para obtener todos los registros
 async function getRegisters() {
     const registers = await RegisterModel
         .find()
-        .select({ Nombre: 1, Apellido: 1, Email: 1, Telefono: 1, Direccion: 1, Ciudad: 1, Estado: 1, CodigoPostal: 1, FechaIngreso: 1, Admin: 1 });
+        .select({ Nombre: 1, Apellido: 1, Email: 1, Password: 1, Telefono: 1, Direccion: 1, Ciudad: 1, Estado: 1, CodigoPostal: 1, FechaIngreso: 1, Admin: 1 });
     console.log(registers);
 }
 
@@ -43,7 +87,7 @@ async function getRegisters() {
 async function getRegister(id) {
     const register = await RegisterModel
         .findById(id)
-        .select({ Nombre: 1, Apellido: 1, Email: 1, Telefono: 1, Direccion: 1, Ciudad: 1, Estado: 1, CodigoPostal: 1, FechaIngreso: 1, Admin: 1 });
+        .select({ Nombre: 1, Apellido: 1, Email: 1, Password: 1, Telefono: 1, Direccion: 1, Ciudad: 1, Estado: 1, CodigoPostal: 1, FechaIngreso: 1, Admin: 1 });
     console.log(register);
 }
 
@@ -137,6 +181,8 @@ async function createCategory(category) {
     const result = await categoryObject.save();
     console.log(result);
 }
+
+
 
 //Metodo para obtener todos las Categorias
 async function getCategories() {
