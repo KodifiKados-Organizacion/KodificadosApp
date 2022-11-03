@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 const Lista = (props) => {
   const [carrito, setcarrito] = useState([]);
   const [productos_carro, setproductoscarro] = useState([]);
+
+ 
+  
   return (
     <div>
       <nav className="nav">
@@ -37,17 +40,19 @@ const Lista = (props) => {
       </div>
 
       <div
-        className="modal fade"
+        className="modal fade w1"
         id="carrito"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog  modal-xl">
           <div className="modal-content">
-            <div className="modal-header">
+            <div className="modal-header text-primary">
+
+            
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Lista de compras
+               Tu Carrito
               </h1>
               <button
                 type="button"
@@ -57,10 +62,10 @@ const Lista = (props) => {
               ></button>
             </div>
             <div className="modal-body">
-              {carrito.length > 0 ? (
-                <Carrito carrito={carrito} />
+              {(carrito.length > 0) ? (
+                <Carrito carrito={carrito} setcarrito={setcarrito} />
               ) : (
-                <span>No hay productos en el carrito</span>
+                <span className="text-danger">No hay productos en el carrito</span>
               )}
             </div>
             <div className="modal-footer">
