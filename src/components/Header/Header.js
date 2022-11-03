@@ -3,20 +3,15 @@ import { Link } from 'react-router-dom'
 import '../../styles/components/Header.css'
 import logo from '../../assets/imgs/logo10_22_162944.png'
 
-export const Header = () => {
+export const Header = (props) => {
   const [LoginState, setLoginState] = useState(false)
   let LoginUser;
+  if(props.auth == 'true'){
+    LoginUser = props.name;
+  }else{
+    LoginUser = 'Invitado';
+  }
 
-   if(LoginState === false){
-          LoginUser=<li>
-                      <Link to='Login'> Login </Link>
-                    </li>
-         
-}else{
-        LoginUser=<li>
-                  <Link to='Login' onClick={ setLoginState(false) }>Logout</Link>
-                  </li>
-} 
 
  console.log(LoginState);
 
@@ -36,7 +31,7 @@ export const Header = () => {
         <li>
           <Link to='About'>Nosotros</Link>
         </li>
-        {LoginUser}
+        {LoginState ? <li>{ LoginUser }</li> && <li>logout</li>: <li><Link to='/Login'>Login</Link></li>}
        
       </ul>
 
