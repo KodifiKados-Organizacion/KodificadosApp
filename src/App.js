@@ -3,7 +3,7 @@ import {Header} from './components/Header/Header';
 import { Footer } from './components/Footer/Footer'
 
 import { useSearchParams } from 'react-router-dom';
-import { RouterAuth } from './routers/RouterAuth';
+import { RouterAuth } from './Routers/RouterAuth';
 
 function App() {
   const [ searchParams ] = useSearchParams();

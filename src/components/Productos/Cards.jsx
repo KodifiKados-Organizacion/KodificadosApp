@@ -35,7 +35,7 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
     }
     return (
       <>
-        <div className="card" key={ producto.name } style={{ width: "18rem" }}>
+        <div className="card " key={ producto.name } style={{ width: "18rem" }}>
           <img src={producto.urlImagen} className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title">{producto.category}</h5>

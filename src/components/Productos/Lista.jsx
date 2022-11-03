@@ -76,9 +76,7 @@ const Lista = (props) => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
-                Finalizar compra
-              </button>
+             
             </div>
           </div>
         </div>

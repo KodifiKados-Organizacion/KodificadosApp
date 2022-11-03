@@ -72,7 +72,7 @@ updateProduct('6142b3c3f8d1f0c3e8b3b0d9', {
     FechaIngreso: '2021-09-01',
 });
 
-deleteProduct('614
+
 
 
 //Metodo para obtener todos los registros
