@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { Routerproducts } from "./routes/product.js";
 import {routerRegister}from "./routes/register.js"
 
-
+const port=5000;
 const app = express();
 app.listen(port, () => console.log("Server running on port "+port));
 
