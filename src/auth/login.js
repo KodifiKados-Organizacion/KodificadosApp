@@ -1,10 +1,13 @@
-import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom'
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import '../styles/pages/login.css'
+import { AuthContext } from './Context';
 
 export const Login = () => {
-  const [Params, setParams ] = useSearchParams();
+
+  const { login } = useContext( AuthContext )
+
   const [Dato , setDato] = useState();
   const [Login, setLogin] = useState(false);
   const [formValues, handleInputChange] = useForm({
@@ -39,12 +42,6 @@ export const Login = () => {
     if(Dato[0].Email == formValues.Email && Dato[0].Password == formValues.Password){
       setLogin(true);
     console.log(Login);
-    setParams({
-     "auth": Login,
-      "Nombre": Dato[0].Nombre,
-      "Admin": Dato[0].Admin
-    });
-    console.log(Params);
     window.location.href = "/home";
     }else{
       console.log('no existe');
