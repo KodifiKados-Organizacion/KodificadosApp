@@ -16,5 +16,5 @@ const RegisterSchema = mongoose.Schema({
 });
 
 // modelo de registro
-var RegisterModel=mongoose.model('registros', RegisterSchema);
+var RegisterModel=mongoose.model('Registro', RegisterSchema);
 export {RegisterModel} ;

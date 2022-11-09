@@ -8,7 +8,7 @@ import{getRegisters,createRegister, getRegister, updateRegister}from"../db.js"
 
 
  routerRegister.get('/',  async(req, res) => {
-    const data =await getRegister();
+    const data =await getRegisters();
     res.json(data)
 });
 

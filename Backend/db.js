@@ -87,7 +87,7 @@ async function getRegisters() {
     const registers = await RegisterModel
         .find()
         .select({ Nombre: 1, Apellido: 1, Email: 1, Password: 1, Telefono: 1, Direccion: 1, Ciudad: 1, Estado: 1, CodigoPostal: 1, FechaIngreso: 1, Admin: 1 });
-    console.log(registers);
+    return registers;
 }
 
 // metodo para obtener un registro
@@ -108,7 +108,7 @@ async function updateRegister(id, register) {
 //metodo para eliminar un registro
 async function deleteRegister(id) {
     const result = await RegisterModel.deleteOne({ _id: id });
-    console.log(result);
+return result;
 }
 
 // Exports Functiuons Register
