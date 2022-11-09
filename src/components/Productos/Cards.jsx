@@ -35,13 +35,13 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
     }
     return (
       <>
-        <div className="card " key={ producto.name } style={{ width: "18rem" }}>
-          <img src={producto.urlImagen} className="card-img-top" alt="..." />
+        <div className="card " key={ producto._id } style={{ width: "18rem" }}>
+          <img src={producto.Imagen} className="card-img-top" alt="..." />
           <div className="card-body">
-            <h5 className="card-title">{producto.category}</h5>
-            <p className="card-text">{producto.name}</p>
+            <h5 className="card-title">{producto.Categoria}</h5>
+            <p className="card-text">{producto.Nombre}</p>
             <p className="card-text">{producto.descripcion}</p>
-            <p className="card-text text-success">{producto.price}</p>
+            <p className="card-text text-success">{producto.PrecioVenta}</p>
           </div>
           <div className="card-footer">
             <button

@@ -2,13 +2,24 @@ import { PRODUCTS } from "./../../data/products";
 import "../../styles/components/cards.css";
 import Cards from "./Cards";
 import Carrito from "../Carrito/Carrito";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Lista = (props) => {
   const [carrito, setcarrito] = useState([]);
+  const [productos,setproductos]=useState([])
   const [productos_carro, setproductoscarro] = useState([]);
 
+ const getProducts=async()=>{
+  
+   const data =await fetch("http://localhost:5000/api/products")
+   const resp=await(data.json())
+  
+   setproductos(resp)
+ }
+  useEffect(()=>{
+    getProducts()
+  },[])
  
   
   return (
@@ -28,12 +39,13 @@ const Lista = (props) => {
       <h1>Catalogo</h1>
 
       <div className="container-products">
-        {PRODUCTS.map((producto) => (
+        {productos.map((producto) => (
           <Cards
+          key={productos._id}
             producto={producto}
             setcarrito={setcarrito}
             carrito={carrito}
-            key={producto.name}
+            
             buttom = {props.buttom}
           />
         ))}

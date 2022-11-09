@@ -1,35 +1,42 @@
 import mongoose from 'mongoose';
 
+//Modelos  de datos 
 
-mongoose.connect('mongodb+srv://KodifiKados:KodifiK2_2022@kodifikados.yvnuqi1.mongodb.net/KodifiKados?retryWrites=true&w=majority', {})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('Could not connect to MongoDB...' + err));
+import {ProductModel} from './models/products.js'
+import{RegisterModel}from './models/register.js'
+import{SaleModel} from "./models/sales.js"
+
+// mongoose.connect('mongodb+srv://KodifiKados:KodifiK2_2022@kodifikados.yvnuqi1.mongodb.net/KodifiKados?retryWrites=true&w=majority', {})
+// .then(() => console.log('Connected to MongoDB'))
+// .catch(err => console.error('Could not connect to MongoDB...' + err));
 
 
 // esquema de registro
-const RegisterSchema = mongoose.Schema({
-    Nombre: String,
-    Apellido: String,
-    Email: String,
-    Password: String,
-    Telefono: String,
-    Direccion: String,
-    Ciudad: String,
-    Estado: String,
-    CodigoPostal: String,
-    FechaIngreso: String,
-    Admin: Boolean,
-});
+// const RegisterSchema = mongoose.Schema({
+//     Nombre: String,
+//     Apellido: String,
+//     Email: String,
+//     Password: String,
+//     Telefono: String,
+//     Direccion: String,
+//     Ciudad: String,
+//     Estado: String,
+//     CodigoPostal: String,
+//     FechaIngreso: String,
+//     Admin: Boolean,
+// });
 
-// modelo de registro
-const RegisterModel = mongoose.model('Registro', RegisterSchema);
+// // modelo de registro
+// const RegisterModel = mongoose.model('Registro', RegisterSchema);
 
 // consultas
+
+
 // metodo para crear un registro
 async function createRegister(register) {
     const registerObject =  new RegisterModel(register);
     const result = await registerObject.save();
-    console.log(result);
+    return result;
 }
 
 createRegister({
@@ -88,7 +95,7 @@ async function getRegister(id) {
     const register = await RegisterModel
         .findById(id)
         .select({ Nombre: 1, Apellido: 1, Email: 1, Password: 1, Telefono: 1, Direccion: 1, Ciudad: 1, Estado: 1, CodigoPostal: 1, FechaIngreso: 1, Admin: 1 });
-    console.log(register);
+    return register;
 }
 
 // metodo para actualizar un registro
@@ -96,7 +103,7 @@ async function updateRegister(id, register) {
     const result = await RegisterModel.updateOne({ _id: id }, {
         $set: register
     });
-    console.log(result);
+    return result;
 }
 //metodo para eliminar un registro
 async function deleteRegister(id) {
@@ -110,19 +117,19 @@ export { createRegister, getRegisters, getRegister, updateRegister, deleteRegist
 
 // esquema de Producto
 
-const ProductSchema = mongoose.Schema({
-    Nombre: String,
-    Descripcion: String,
-    Precio: Number,
-    PrecioVenta: Number,
-    Cantidad: Number,
-    Categoria: String,
-    Imagen: String,
-    FechaIngreso: String,
-});
+// const ProductSchema = mongoose.Schema({
+//     Nombre: String,
+//     Descripcion: String,
+//     Precio: Number,
+//     PrecioVenta: Number,
+//     Cantidad: Number,
+//     Categoria: String,
+//     Imagen: String,
+//     FechaIngreso: String,
+// });
 
-// modelo de Producto
-const ProductModel = mongoose.model('Producto', ProductSchema);
+// // modelo de Producto
+// const ProductModel = mongoose.model('Producto', ProductSchema);
 
 // consultas
 // metodo para crear un Producto
@@ -137,7 +144,7 @@ async function getProducts() {
     const products = await ProductModel
         .find()
         .select({ Nombre: 1, Descripcion: 1, Precio: 1, PrecioVenta: 1, Cantidad: 1, Categoria: 1, Imagen: 1,  FechaIngreso: 1, });
-    console.log(products);
+    return products;
 }
 
 // metodo para obtener un Producto
@@ -217,29 +224,29 @@ export { createCategory, getCategories, getCategory, updateCategory, deleteCateg
 
 // esquema de Ventas
 
-const SaleSchema = mongoose.Schema({
-    IdVendedor: Number,
-    NombreVendedor: String,
-    ApellidoVendedor: String,
-    EmailVendedor: String,
-    IdComprador: Number,
-    NombreComprador: String,
-    ApellidoComprador: String,
-    EmailComprador: String,
-    IdProductos: {
-        NombreProducto: String,
-        DescripcionProducto: String,
-        PrecioProducto: Number,
-        CantidadProducto: Number,
-        CategoriaProducto: String,
-    },
-    FechaVenta: String,
-    CantidadVendida: Number,
-    TotalVenta: Number,
-});
+// const SaleSchema = mongoose.Schema({
+//     IdVendedor: Number,
+//     NombreVendedor: String,
+//     ApellidoVendedor: String,
+//     EmailVendedor: String,
+//     IdComprador: Number,
+//     NombreComprador: String,
+//     ApellidoComprador: String,
+//     EmailComprador: String,
+//     IdProductos: {
+//         NombreProducto: String,
+//         DescripcionProducto: String,
+//         PrecioProducto: Number,
+//         CantidadProducto: Number,
+//         CategoriaProducto: String,
+//     },
+//     FechaVenta: String,
+//     CantidadVendida: Number,
+//     TotalVenta: Number,
+// });
 
-// modelo de Ventas
-const SaleModel = mongoose.model('Venta', SaleSchema);
+// // modelo de Ventas
+// const SaleModel = mongoose.model('Venta', SaleSchema);
 
 // consultas
 // metodo para crear un Venta
@@ -280,4 +287,5 @@ async function deleteSale(id) {
 
 // Exports Functiuons Sale
 export { createSale, getSales, getSale, updateSale, deleteSale };
+
 
