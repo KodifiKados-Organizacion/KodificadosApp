@@ -26,6 +26,8 @@ const Lista = (props) => {
     <div>
       <nav className="nav">
         {props.buttom === "Agregar" ? 
+        <>
+        <button>Categorias</button>
         <button
           type="button"
           className="btn btn-primary position-relative"
@@ -34,7 +36,7 @@ const Lista = (props) => {
         >
           {carrito.length}
           <i className="ri-shopping-cart-fill"></i>
-        </button>: <Link to='Ventas' className="btn btn-info"> <ion-icon name="cash-outline"></ion-icon> </Link>  }
+        </button></>: <Link to='Ventas' className="btn btn-info"> <ion-icon name="cash-outline"></ion-icon> </Link>  }
       </nav>
       <h1>Catalogo</h1>
 

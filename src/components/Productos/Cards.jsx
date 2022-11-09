@@ -2,15 +2,16 @@ import { useSearchParams } from "react-router-dom";
 
 const Cards = ({ producto, setcarrito, carrito, buttom}) => {
   const [searchParams, setSearchParams] = useSearchParams();
-    let newproducto = [];
+    //let newproducto = [];
     const HandleClick = () => {
         switch (buttom) {
             case "Agregar":
+              if(carrito.includes(producto))return alert("Tu producto ya fue agregado, modifica la cantidad desde el carrito..")
               setcarrito([...carrito, producto]);
-                console.log(producto.id);
+          
               break;
             case "Editar": 
-                console.log(producto.id);
+          
                 if(producto !== undefined){
                     setSearchParams({"producto": producto.id});
                     console.log(searchParams);
@@ -19,6 +20,8 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
                     console.log("no se pudo editar")
                 }
                 break;
+                default:
+                  console.log("no asignado");
         }
     }
 
@@ -31,6 +34,8 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
                 console.log("eliminando");
                 alert("eliminando producto "+ producto.id); 
                 break;
+                default:
+                  console.log("no asignado");
         }
     }
     return (
@@ -40,7 +45,7 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
           <div className="card-body">
             <h5 className="card-title">{producto.Categoria}</h5>
             <p className="card-text">{producto.Nombre}</p>
-            <p className="card-text">{producto.descripcion}</p>
+            <p className="card-text">{producto.Categoria}</p>
             <p className="card-text text-success">{producto.PrecioVenta}</p>
           </div>
           <div className="card-footer">

@@ -1,0 +1,14 @@
+*{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.container-about-page {
+    background-color: #1a1d21;
+    color: white;
+    padding: 5rem;
+}
+
+h1 {
+    color: #652ec5;
+    font-weight: 600;
+}
