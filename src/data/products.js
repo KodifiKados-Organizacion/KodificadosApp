@@ -73,3 +73,5 @@ export const PRODUCTS = [
     FechaIngreso: "2022-10-31",
   },
 ];
+
+export default PRODUCTS;

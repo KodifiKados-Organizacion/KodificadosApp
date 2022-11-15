@@ -11,3 +11,28 @@
     color: white;
     /*box-shadow: 5px 7px 2px 0px hsl(0, 4%, 18%);*/
 }
+
+main {
+    padding: 1rem;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.product {
+    border: 1px #404040 solid;
+    margin: 1rem;
+}
+
+.product img{
+    width: 100%;
+    max-width: 400px;
+}
+
+.product-info { 
+    padding: 1rem;
+}

@@ -3,7 +3,7 @@ import "../../styles/components/cards.css";
 import Cards from "./Cards";
 import Carrito from "../Carrito/Carrito";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 
 const Lista = (props) => {
   const [carrito, setcarrito] = useState([]);
@@ -38,7 +38,35 @@ const Lista = (props) => {
           <i className="ri-shopping-cart-fill"></i>
         </button></>: <Link to='Ventas' className="btn btn-info"> <ion-icon name="cash-outline"></ion-icon> </Link>  }
       </nav>
+
+      {/* AFMT */}
       <h1>Catalogo</h1>
+
+      <main>
+        <h1>Productos</h1>
+        <div className="products">
+        {PRODUCTS.map(product => (
+        <div className="product" key={product._id}>
+          <a href={`/product/${product.slug}`}>
+          <img src={product.Imagen} alt={product.name} />
+          </a>
+          <div className="product-info">
+          <a href={`/product/${product.slug}`}>
+          <p>
+            {product.Nombre}
+          </p>
+          </a>
+          <p>
+            <strong>${product.Precio}</strong>
+          </p>
+          <button>Agregar al carrito</button>
+          </div>
+        </div>
+        ))
+        }
+        </div>
+      </main>
+      {/* AFMT */}
 
       <div className="container-products">
         {productos.map((producto) => (
