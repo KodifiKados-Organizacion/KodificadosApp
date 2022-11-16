@@ -6,11 +6,13 @@ const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
     setcantidad(cantidad + 1);
   };
   const disminuircantidad = () => {
-    if (cantidad >= 1) {
-      setcantidad(cantidad - 1);
-    }else{
-        alert("La cantidad Minima es uno");
+    if (cantidad <=1) {
+
+      alert("La cantidad Minima es uno");
         setcantidad(1);
+      
+    }else{
+      setcantidad(cantidad - 1);  
     }
     
   };
@@ -21,10 +23,17 @@ const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
       {" "}
       <div className="d-flex">
         <img src={producto.Imagen} alt="" width={50} />{" "}
-        <p> name:{producto.Nombre}</p>
+        <div><p> Nombre :{producto.Nombre}</p>
+        <p className="text-secondary"> <small>Cantidad Disponible({producto.Cantidad})</small></p>
+        
+        <small className="text-secondary">precio unitario:$ {producto.PrecioVenta}</small>
+        </div>
+        
+        
       </div>{" "}
       <span>
-        <strong>v/u:$ {producto.PrecioVenta}</strong>
+        
+        
         <p>v/t:{producto.PrecioVenta*cantidad}</p>
       </span>
       <button
@@ -35,7 +44,7 @@ const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
       >
         -
       </button>
-      {cantidad}
+      <input type="text"  value={cantidad} className="border border-0"/>
       <button
         className="border border-0 text-primary"
         onClick={(e) => {

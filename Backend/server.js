@@ -3,6 +3,7 @@ import  express, { json } from "express";
 import mongoose from 'mongoose';
 import { Routerproducts } from "./routes/product.js";
 import {routerRegister}from "./routes/register.js"
+import { RouterSale } from "./routes/sale.js";
 
 const port=5000;
 const app = express();
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
 
 app.use("/api/register",routerRegister)
 app.use("/api/products",Routerproducts)
-//app.use("/api/sales",)
+app.use("/api/sales",RouterSale)
 
 
 mongoose.connect('mongodb+srv://KodifiKados:KodifiK2_2022@kodifikados.yvnuqi1.mongodb.net/KodifiKados?retryWrites=true&w=majority', {})

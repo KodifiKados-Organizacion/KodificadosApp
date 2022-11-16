@@ -31,7 +31,9 @@ const Carrito = ({ carrito, setcarrito }) => {
     };
      const EnviaVenta=(e)=>{
         e.preventDefault();
-        alert("Creando venta")
+        alert(JSON.stringify(carrito))
+
+
 
      }
 

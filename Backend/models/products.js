@@ -10,6 +10,7 @@ const ProductSchema = mongoose.Schema({
     Categoria: String,
     Imagen: String,
     FechaIngreso: String,
+    Disponible:Boolean
 });
 
 // modelo de Producto
