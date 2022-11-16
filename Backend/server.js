@@ -1,6 +1,7 @@
 import  express, { json } from "express";
 
 import mongoose from 'mongoose';
+ import cors from "cors"
 import { Routerproducts } from "./routes/product.js";
 import {routerRegister}from "./routes/register.js"
 import { RouterSale } from "./routes/sale.js";
@@ -8,7 +9,7 @@ import { RouterSale } from "./routes/sale.js";
 const port=5000;
 const app = express();
 app.listen(port, () => console.log("Server running on port "+port));
-
+app.use(cors())
 //app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {

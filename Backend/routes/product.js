@@ -11,10 +11,12 @@ Routerproducts
     res.status(200).json(data);
   })
   .post("/", body("Nombre").notEmpty(), body("Precio").notEmpty(), body("PrecioVenta").notEmpty(), body("Cantidad").notEmpty(), async (req, res) => {
+
+    console.log(req)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log("JSON.stringify(errors)");
-     res.status(400).json({ errors: errors.array() });
+      console.log(JSON.stringify(errors));
+      return res.status(400).json({ errors: errors.array() });
     }
 
      const data=await createProduct(req.body);
@@ -29,6 +31,11 @@ Routerproducts
     }
     const data = await updateProduct(req.params.id, req.body);
     res.status(200).json(data)
+  }).delete("/",(req,res)=>{
+
+    let productos= new ProductModel().find({Nombre:"Producto 1"})
+    console.log(productos)
+    
   });
 
 export { Routerproducts };

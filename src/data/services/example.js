@@ -18,3 +18,6 @@ export const exampleFetch2 = (id) => {
          })
 }
 
+
+
+
