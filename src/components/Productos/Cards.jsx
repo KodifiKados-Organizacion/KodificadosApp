@@ -45,7 +45,7 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
           <div className="card-body">
             <h5 className="card-title">{producto.Categoria}</h5>
             <p className="card-text">{producto.Nombre}</p>
-            <p className="card-text">{producto.Categoria}</p>
+            <p className="card-text">{producto.Descripcion}</p>
             <p className="card-text text-success">{producto.PrecioVenta}</p>
           </div>
           <div className="card-footer">

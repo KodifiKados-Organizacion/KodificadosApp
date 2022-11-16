@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import { ProductModel } from './models/products.js'
 import { RegisterModel } from './models/register.js'
 import { SaleModel } from "./models/sales.js"
+ import { CategoryModel } from "./models/categoriesModel.js";
 
 
 
@@ -97,21 +98,13 @@ export { createProduct, getProducts, getProduct, updateProduct, deleteProduct };
 
 // esquema de Categoria
 
-const CategorySchema = mongoose.Schema({
-    Nombre: String,
-    Descripcion: String,
-    Imagen: String,
-});
-
-// modelo de Categoria
-const CategoryModel = mongoose.model('Categoria', CategorySchema);
 
 // consultas
 // metodo para crear un Categoria
 async function createCategory(category) {
     const categoryObject = new CategoryModel(category);
     const result = await categoryObject.save();
-    console.log(result);
+    return result;
 }
 
 
@@ -121,14 +114,14 @@ async function getCategories() {
     const categories = await CategoryModel
         .find()
         .select({ Nombre: 1, Descripcion: 1, Imagen: 1 });
-    console.log(categories);
+    return categories;
 }
 
 // metodo para obtener una Categoria
 async function getCategory(id) {
     const category = await CategoryModel
         .find({ _id: id })
-    console.log(category);
+    return category;
 }
 
 // metodo para actualizar un Categoria
@@ -136,12 +129,12 @@ async function updateCategory(id, category) {
     const result = await CategoryModel.updateOne({ _id: id }, {
         $set: category
     });
-    console.log(result);
+    return result;
 }
 //metodo para eliminar un Categoria
 async function deleteCategory(id) {
     const result = await CategoryModel.deleteOne({ _id: id });
-    console.log(result);
+    return result;
 }
 
 // Exports Functiuons Category

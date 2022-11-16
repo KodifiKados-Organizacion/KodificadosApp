@@ -5,24 +5,26 @@ import mongoose from 'mongoose';
 import { Routerproducts } from "./routes/product.js";
 import {routerRegister}from "./routes/register.js"
 import { RouterSale } from "./routes/sale.js";
+import { Routercategorys } from "./routes/categoriaRouter.js";
 
 const port=5000;
 const app = express();
 app.listen(port, () => console.log("Server running on port "+port));
 app.use(cors())
-//app.use(express.json());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-	res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+	 res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+	 res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
 	next();
 });
 
 
 app.use("/api/register",routerRegister)
 app.use("/api/products",Routerproducts)
+app.use("/api/categorys",Routercategorys)
 app.use("/api/sales",RouterSale)
 
 

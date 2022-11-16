@@ -12,7 +12,7 @@ Routerproducts
   })
   .post("/", body("Nombre").notEmpty(), body("Precio").notEmpty(), body("PrecioVenta").notEmpty(), body("Cantidad").notEmpty(), async (req, res) => {
 
-    console.log(req)
+   
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(JSON.stringify(errors));
