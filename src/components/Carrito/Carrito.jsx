@@ -1,29 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import Productoseleccionado from "./Productoseleccionado";
 
 const Carrito = ({ carrito, setcarrito }) => {
    let precioacumulado=0;
-   /*Modelo de datos
-    IdVendedor: Number,
-    NombreVendedor: String,
-    ApellidoVendedor: String,
-    EmailVendedor: String,
-    IdComprador: Number,
-    NombreComprador: String,
-    ApellidoComprador: String,
-    EmailComprador: String,
-    IdProductos: {
-        NombreProducto: String,
-        DescripcionProducto: String,
-        PrecioProducto: Number,
-        CantidadProducto: Number,
-        CategoriaProducto: String,
-    },
-    FechaVenta: String,
-    CantidadVendida: Number,
-    TotalVenta: Number,
-   
-   */
+   const Navigate = useNavigate();
+  
 
     const quitarproductodecarrito = (id) => {
         const newcarrito = carrito.filter((producto) => producto._id != id);
@@ -31,10 +13,8 @@ const Carrito = ({ carrito, setcarrito }) => {
     };
      const EnviaVenta=(e)=>{
         e.preventDefault();
-        alert(JSON.stringify(carrito))
-
-
-
+        console.log( JSON.stringify(carrito));
+        Navigate('/Cliente/Ventas');
      }
 
   

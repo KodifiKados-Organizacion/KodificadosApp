@@ -2,18 +2,15 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/components/Header.css'
 import logo from '../../assets/imgs/logo10_22_162944.png'
+import { useContext } from 'react'
+import { AuthContext } from '../../auth/Context'
 
 export const Header = (props) => {
-  const [LoginState, setLoginState] = useState(false)
-  let LoginUser;
-  if(props.auth == 'true'){
-    LoginUser = props.name;
-  }else{
-    LoginUser = 'Invitado';
+const { user, logged, logout } = useContext( AuthContext );
+
+  const HandleLogout = () => {
+    logout();
   }
-
-
- console.log(LoginState);
 
   return (
 
@@ -22,16 +19,17 @@ export const Header = (props) => {
         <img src={ logo } alt="Logo KodifiKados" className='logo-header' />
       </Link>
       <ul>
-        <li>
+        {logged?<li>
           <Link to='Cliente'>Clientes</Link>
-          </li>
-          <li>
+          </li>:null}
+          { logged && user.admin?<li>
           <Link to='Admin'>Admin</Link>
-        </li>
+        </li>:null}
         <li>
           <Link to='About'>Nosotros</Link>
         </li>
-        {LoginState ? <li>{ LoginUser }</li> && <li>logout</li>: <li><Link to='/Login'>Login</Link></li>}
+        { logged ? <li><Link>{ user.user }</Link></li> : null }
+        { logged ? <li onClick={HandleLogout}><Link to='/Login'> LogOut </Link></li> :<li><Link to='/Login'>Login</Link></li>}
        
       </ul>
 
