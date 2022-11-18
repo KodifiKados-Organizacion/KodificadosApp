@@ -79,6 +79,12 @@ async function getProduct(id) {
     return product
 }
 
+///metodo para encontrar  un producto
+ async  function  findOneProduct(Nombre){
+     const product= await ProductModel.findOne({Nombre:Nombre})
+      return product;
+ }
+
 // metodo para actualizar un Producto
 async function updateProduct(id, product) {
      const result = await ProductModel.updateOne({_id:id}, {

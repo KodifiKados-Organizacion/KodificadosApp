@@ -5,37 +5,56 @@ import { getProducts, createProduct, updateProduct } from "../db.js";
 
 let Routerproducts = express.Router();
 
-Routerproducts
-  .get("/", async (req, res) => {
+Routerproducts.get("/", async (req, res) => {
+  try {
     const data = await getProducts();
     res.status(200).json(data);
-  })
-  .post("/", body("Nombre").notEmpty(), body("Precio").notEmpty(), body("PrecioVenta").notEmpty(), body("Cantidad").notEmpty(), async (req, res) => {
+  } catch (error) {
+    res.status(400).send(error);
+  }
+})
+  .post(
+    "/",
+    body("Nombre").notEmpty(),
+    body("Precio").notEmpty(),
+    body("PrecioVenta").notEmpty(),
+    body("Cantidad").notEmpty(),
+    async (req, res) => {
+      try {
 
-   
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      console.log(JSON.stringify(errors));
-      return res.status(400).json({ errors: errors.array() });
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          console.log(JSON.stringify(errors));
+          return res.status(400).json({ errors: errors.array() });
+        }
+
+        const data = await createProduct(req.body);
+        console.log(JSON.stringify(data));
+        res.status(201).json(data);
+      } catch (error) {
+        res.status(400).send(error);
+      }
     }
-
-     const data=await createProduct(req.body);
-     res.status(200).json(data)
-  })
-  .put("/:id", body("Nombre").notEmpty(), body("Precio").notEmpty(), body("PrecioVenta").notEmpty(), body("Cantidad").notEmpty(), async (req, res) => {
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      console.log("JSON.stringify(errors)");
-      return res.status(400).json({ errors: errors.array() });
+  )
+  .put(
+    "/:id",
+    body("Nombre").notEmpty(),
+    body("Precio").notEmpty(),
+    body("PrecioVenta").notEmpty(),
+    body("Cantidad").notEmpty(),
+    async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        console.log("JSON.stringify(errors)");
+        return res.status(400).json({ errors: errors.array() });
+      }
+      const data = await updateProduct(req.params.id, req.body);
+      res.status(200).json(data);
     }
-    const data = await updateProduct(req.params.id, req.body);
-    res.status(200).json(data)
-  }).delete("/",(req,res)=>{
-
-    let productos= new ProductModel().find({Nombre:"Producto 1"})
-    console.log(productos)
-    
+  )
+  .delete("/", (req, res) => {
+    let productos = new ProductModel().find({ Nombre: "Producto 1" });
+    console.log(productos);
   });
 
 export { Routerproducts };

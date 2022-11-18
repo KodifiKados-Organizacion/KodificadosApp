@@ -13,6 +13,7 @@ const FormAgregar = () => {
   const [cantidad, setCantidad] = useState();
   const [categoria, setCategoria] = useState();
   const [imagen, setimagen] = useState();
+  const [errors, seterrors] = useState([]);
 
   const getDatacategories = async () => {
     const data = await fetch("http://localhost:5000/api/categorys");
@@ -24,11 +25,11 @@ const FormAgregar = () => {
     getDatacategories();
   }, []);
 
-  const HandleSumbit = (e) => {
+  const HandleSumbit = async (e) => {
     e.preventDefault();
 
     if (nombre === "" || nombre === undefined) {
-      alert("no hay nombre");
+      alert("Ingresa el nombre del equipo");
       return;
     }
     if (precio === "" || precio === undefined) {
@@ -37,30 +38,34 @@ const FormAgregar = () => {
     }
 
     if (precioVenta === "" || precioVenta === undefined) {
-        alert("Debe agregar el precio  de  venta del producto");
-        return;
-      }
+      alert("Debe agregar el precio  de  venta del producto");
+      return;
+    }
 
-      if (cantidad === "" || cantidad === undefined) {
-        alert("agrega la cantidad ");
-        return;
-      }
-      if (categoria === "" || categoria === undefined) {
-        alert("Debes seleccionar la categoria ");
-        return;
-      }
-  
+    if (cantidad === "" || cantidad === undefined) {
+      alert("agrega la cantidad ");
+      return;
+    }
+    if (categoria === "" || categoria === undefined) {
+      alert("Debes seleccionar la categoria ");
+      return;
+    }
 
-    submitProduct({
+    const resp = await submitProduct({
       Nombre: nombre,
       Descripcion: descripcion,
       Precio: precio,
       PrecioVenta: precioVenta,
       Cantidad: cantidad,
       Categoria: categoria,
-      Imagen:
-        imagen,
+      Imagen: imagen,
     });
+
+    if (resp.errors) {
+      alert(JSON.stringify(resp.errors));
+      return;
+    }
+    alert("Producto " + resp.Nombre + " Agregado correctamente..");
   };
   return (
     <div>
@@ -174,6 +179,16 @@ const FormAgregar = () => {
 
         <button className=" btn btn-primary"> Agregar Producto </button>
       </form>
+
+      {errors.length > 0
+        ? errors.map((error) => {
+            return (
+              <div class="alert alert-danger" role="alert">
+                {error}
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 };
