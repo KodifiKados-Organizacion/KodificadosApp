@@ -21,7 +21,7 @@ export const Footer = () => {
        </div>
        <div className='container-redes'>
           <span>
-            <a href="#">
+            <a href="https://www.facebook.com/profile.php?id=100087114889612">
             <ion-icon name="logo-facebook" size='large'>Facebook</ion-icon>
             </a>
           </span>
@@ -31,12 +31,12 @@ export const Footer = () => {
             </a>
           </span>
           <span>
-            <a href="#">
+            <a href="https://instagram.com/kodifikados?igshid=YmMyMTA2M2Y=">
             <ion-icon name="logo-instagram" size='large'>Instagram</ion-icon>
             </a>
           </span>
           <span>
-            <a href="#">
+            <a href=" https://youtube.com/channel/UCWUJLAARG9Hqgf58-3eK4yw">
             <ion-icon name="logo-youtube" size='large'>YouTube</ion-icon>
             </a>
           </span>
