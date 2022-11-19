@@ -1,39 +1,43 @@
-import  express from "express";
-import "./db.js";
-import { createRegister, getRegisters, getRegister, updateRegister, deleteRegister, createProduct, getProducts,
-    getProduct, updateProduct, deleteProduct, createCategory, getCategories, getCategory, updateCategory,
-    deleteCategory, createSale, getSales, getSale, deleteSale, updateSale } from "./db.js";
- 
+import  express, { json } from "express";
 
+import mongoose from 'mongoose';
+ import cors from "cors"
+import { Routerproducts } from "./routes/product.js";
+import {routerRegister}from "./routes/register.js"
+import { RouterSale } from "./routes/sale.js";
+import { Routercategorys } from "./routes/categoriaRouter.js";
+
+const port=5000;
 const app = express();
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(port, () => console.log("Server running on port "+port));
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+	 res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+	 res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+	next();
+});
 
-// createRegister({
-//     Nombre: 'Samuel',
-//     Apellido: 'Rodriguez Gomez',
-//     Email: 'Sam123@gmail.com',
-//     Telefono: '321654987',
-//     Direccion: 'Calle 64A # 113F- 23',
-//     Ciudad: 'Bogota',
-//     Estado: 'Activo',
-//     CodigoPostal: '111031',
-//     FechaIngreso: '2022-10-29',
-//     Admin: true
-// });
 
-getRegisters();
+app.use("/api/register",routerRegister)
+app.use("/api/products",Routerproducts)
+app.use("/api/categorys",Routercategorys)
+app.use("/api/sales",RouterSale)
 
-// deleteRegister('635ede643457b99655a9865c')
 
-// updateRegister('635ecd6ede7383a3df90c039', { 
-//     Nombre: 'William',
-//     Apellido: 'Rodriguez',
-//     Email: 'williamrodriguez997@gmail.com',
-//     Telefono: '3213019261',
-//     Direccion: 'Calle 64A # 113F- 23',
-//     Ciudad: 'Bogota',
-//     Estado: 'Activo',
-//     CodigoPostal: '111031',
-//     FechaIngreso: '2022-10-01',
-//     Admin: true
-// });
+mongoose.connect('mongodb+srv://KodifiKados:KodifiK2_2022@kodifikados.yvnuqi1.mongodb.net/KodifiKados?retryWrites=true&w=majority', {})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Could not connect to MongoDB...' + err));
+
+
+
+
+
+
+
+
+
+

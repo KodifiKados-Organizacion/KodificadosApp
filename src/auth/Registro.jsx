@@ -1,31 +1,93 @@
 import '../styles/components/Registro.css'
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "../hooks/useForm";
+import { useNavigate } from 'react-router';
+import { AuthContext } from './Context';
+
+
+
+
 const Registro = () => {
+  const Navigate = useNavigate();
+  const { register } = useContext(AuthContext);
   const [Registro, setRegistro] = useState({});
+  var url= "";
   const [formValues, hadleInputChange ] = useForm({
     Nombre: "",
     Apellidos: "",
-    Identificacion: "",
     Password: "",
     VPassword: "",
-    Celular: "",
     Telefono: "",
     Email: "",
     Ciudad: "",
+    Departamento: "",
     Direccion: "",
-    CodPostal: ""
+    CodPostal: "",
   });
-  const { Nombre, Apellidos, Identificacion, Password, VPassword, Celular, Telefono, Email, Ciudad, Direccion, CodPostal }= formValues
+  const { Nombre, Apellidos,  Password, VPassword,  Telefono, Email, Ciudad, Departamento, Direccion, CodPostal}= formValues
   const HandleSubmit = (event) => {
     event.preventDefault();
   };
   const HandleClick = (e) => {
       e.preventDefault();
-      setRegistro({formValues})
+      if (Password !== VPassword) {
+        return alert("Las contraseñas no coinciden");
+      }
+      if(Password.length < 8){
+        return alert("La contraseña debe tener al menos 8 caracteres");
+      }
+      if(Telefono.length < 8){
+        return alert("El telefono debe tener al menos 8 caracteres");
+      }
+      if(CodPostal.length < 5){
+        return alert("El codigo postal debe tener al menos 5 caracteres");
+      }
+      if(Nombre.length < 3){
+        return alert("El nombre debe tener al menos 3 caracteres");
+      }
+      if(Apellidos.length < 3){
+        return alert("El apellido debe tener al menos 3 caracteres");
+      }
+      if(Email.length < 3 && Email.includes("@")){
+        return alert("El email debe tener al menos 3 caracteres y debe incluir @");
+      }
+      if(Ciudad.length < 3){
+        return alert("La ciudad debe tener al menos 3 caracteres");
+      }
+      if(Departamento.length < 3){
+        return alert("El departamento debe tener al menos 3 caracteres");
+      }
+      if(Direccion.length < 3){
+        return alert("La direccion debe tener al menos 3 caracteres");
+      }
+      
+      console.log( formValues );
+      setRegistro( formValues );
       console.log(Registro);
-    };
-
+      
+    url = "http://localhost:5000/api/register";
+    if(Registro.Nombre !== undefined && Registro.Apellidos !== undefined && Registro.Password !== undefined && Registro.VPassword !== undefined && Registro.Telefono !== undefined && Registro.Email !== undefined && Registro.Ciudad !== undefined && Registro.Departamento !== undefined && Registro.Direccion !== undefined && Registro.CodPostal !== undefined){
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(Registro),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      alert("Registro exitoso");
+      register(data);
+      Navigate('/Home');
+      })
+      .catch((err) => {
+      alert("Error "+ err +" al registrar");
+    })
+  }else{
+    alert("Por favor llene todos los campos");
+  }
+  };
 
   return (
     <div className="container-registro">
@@ -73,22 +135,7 @@ const Registro = () => {
                     onChange={hadleInputChange}
                   />
                 </div>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                  <p>*</p>
-                    <i className="ri-file-user-fill"></i>
-                  </span>
-                  <input
-                    type="number"
-                    className="form-control"
-                    placeholder="Identificacion"
-                    aria-label="Username"
-                    name="Identificacion"
-                    value={ Identificacion }
-                    onChange={ hadleInputChange }
-                    aria-describedby="basic-addon1"
-                  />
-                </div>
+               
                 <div className="input-group mb-3">
                   <span className="input-group-text" id="basic-addon1">
                   <p>*</p>
@@ -133,26 +180,11 @@ const Registro = () => {
                   <input
                     type="number"
                     className="form-control"
-                    placeholder="celular"
-                    aria-label="Username"
-                    name="Celular"
-                    value={Celular}
-                    onChange={hadleInputChange}
-                    aria-describedby="basic-addon1"
-                  />
-                </div>
-                <div className="input-group mb-3 w-10">
-                  <span className="input-group-text" id="basic-addon1">
-                    <i className="ri-phone-fill"></i>
-                  </span>
-                  <input
-                    type="number"
-                    className="form-control"
-                    placeholder="Telefono"
+                    placeholder="Nro Telefono"
                     aria-label="Username"
                     name="Telefono"
-                    value={ Telefono }
-                    onChange={ hadleInputChange }
+                    value={Telefono}
+                    onChange={hadleInputChange}
                     aria-describedby="basic-addon1"
                   />
                 </div>
@@ -191,6 +223,21 @@ const Registro = () => {
                   aria-describedby="basic-addon1"
                 />
               </div>
+              <div className="input-group mb-3 col-sm-3">
+                <span className="input-group-text" id="basic-addon1">
+                  <i className="ri-map-2-line"></i>
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="departamento"
+                  aria-label="Username"
+                  name="Departamento"
+                  value={ Departamento }
+                  onChange={ hadleInputChange }
+                  aria-describedby="basic-addon1"
+                />
+              </div>
               <div className="input-group mb-3 col-2">
                 <span className="input-group-text" id="basic-addon1">
                   <i className="ri-map-pin-2-fill"></i>
@@ -223,15 +270,11 @@ const Registro = () => {
               </div>
             </div>
           </div>
-          <button onClick={HandleClick} className="btn btn-default" >Registrar</button>
+          <button onClick={HandleClick}  className="btn btn-default" >Registrar</button>
        
         </form>
       </div>
-      {/*<ul className="list-group list-group-flush">
-        <li className="list-group-item">An item</li>
-        <li className="list-group-item">A second item</li>
-        <li className="list-group-item">A third item</li>
-  </ul>*/}
+
     </div>
     </div>
   );

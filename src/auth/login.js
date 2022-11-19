@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import '../styles/pages/login.css'
+import { AuthContext } from './Context';
 
 export const Login = () => {
-  const [Login, setLogin] = useState({});
+  const { login } = useContext(AuthContext);
+  const Navigate = useNavigate();
   const [formValues, handleInputChange] = useForm({
         Email: "",
         Password: ""
@@ -17,8 +19,8 @@ export const Login = () => {
 
   const HandleClick = (e) => {
     e.preventDefault();
-    setLogin({formValues})
-    console.log(Login);
+    login(formValues);
+        Navigate('/Home');
   };
 
   return (

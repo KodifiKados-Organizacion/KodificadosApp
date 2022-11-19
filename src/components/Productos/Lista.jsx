@@ -2,16 +2,32 @@ import { PRODUCTS } from "./../../data/products";
 import "../../styles/components/cards.css";
 import Cards from "./Cards";
 import Carrito from "../Carrito/Carrito";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Link } from "react-router-dom";
 
 const Lista = (props) => {
   const [carrito, setcarrito] = useState([]);
+  const [productos,setproductos]=useState([])
   const [productos_carro, setproductoscarro] = useState([]);
+
+ const getProducts=async()=>{
+  
+   const data =await fetch("http://localhost:5000/api/products")
+   const resp=await(data.json())
+  
+   setproductos(resp)
+ }
+  useEffect(()=>{
+    getProducts()
+  },[])
+ 
+  
   return (
     <div>
       <nav className="nav">
         {props.buttom === "Agregar" ? 
+        <>
+        <button>Categorias</button>
         <button
           type="button"
           className="btn btn-primary position-relative"
@@ -20,34 +36,65 @@ const Lista = (props) => {
         >
           {carrito.length}
           <i className="ri-shopping-cart-fill"></i>
-        </button>: <Link to='Ventas' className="btn btn-info"> <ion-icon name="cash-outline"></ion-icon> </Link>  }
+        </button></>: <Link to='Ventas' className="btn btn-info"> <ion-icon name="cash-outline"></ion-icon> </Link>  }
       </nav>
+
+      {/* AFMT */}
       <h1>Catalogo</h1>
 
+      <main>
+        <h1>Productos</h1>
+        <div className="products">
+        {PRODUCTS.map(product => (
+        <div className="product" key={product._id}>
+          <a href={`/product/${product.slug}`}>
+          <img src={product.Imagen} alt={product.name} />
+          </a>
+          <div className="product-info">
+          <a href={`/product/${product.slug}`}>
+          <p>
+            {product.Nombre}
+          </p>
+          </a>
+          <p>
+            <strong>${product.Precio}</strong>
+          </p>
+          <button>Agregar al carrito</button>
+          </div>
+        </div>
+        ))
+        }
+        </div>
+      </main>
+      {/* AFMT */}
+
       <div className="container-products">
-        {PRODUCTS.map((producto) => (
+        {productos.map((producto) => (
           <Cards
+          key={productos._id}
             producto={producto}
             setcarrito={setcarrito}
             carrito={carrito}
-            key={producto.name}
+            
             buttom = {props.buttom}
           />
         ))}
       </div>
 
       <div
-        className="modal fade"
+        className="modal fade w1"
         id="carrito"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog  modal-xl">
           <div className="modal-content">
-            <div className="modal-header">
+            <div className="modal-header text-primary">
+
+            
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Lista de compras
+               Tu Carrito
               </h1>
               <button
                 type="button"
@@ -57,10 +104,10 @@ const Lista = (props) => {
               ></button>
             </div>
             <div className="modal-body">
-              {carrito.length > 0 ? (
-                <Carrito carrito={carrito} />
+              {(carrito.length > 0) ? (
+                <Carrito carrito={carrito} setcarrito={setcarrito} />
               ) : (
-                <span>No hay productos en el carrito</span>
+                <span className="text-danger">No hay productos en el carrito</span>
               )}
             </div>
             <div className="modal-footer">
@@ -71,9 +118,7 @@ const Lista = (props) => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
-                Finalizar compra
-              </button>
+             
             </div>
           </div>
         </div>
