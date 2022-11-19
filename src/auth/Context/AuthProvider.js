@@ -49,13 +49,32 @@ export const AuthProvider = ({children}) => {
         }
         dispatch( action )
     }
+
+    const register = ( user = {} ) => {
+        const action = {
+            type: types.register,
+            payload: {
+                user: user.Nombre,
+                apellido: user.Apellido,
+                admin: user.Admin,
+                id: user._id,
+                email: user.Email,
+                tel: user.Telefono,
+                dir: user.Direccion,
+                ciudad: user.Ciudad,
+            }
+        }
+        dispatch( action )
+    }
+
   
 
   return (
     <AuthContext.Provider value={{
         ...state,
         login: login, 
-        logout: logout
+        logout: logout,
+        register: register
 
     }}>
         { children }
