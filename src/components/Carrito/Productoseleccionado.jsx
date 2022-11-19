@@ -1,12 +1,18 @@
 import { useContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../auth/Context";
 
 const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
   const { products } = useContext(AuthContext);
   const [cantidad, setcantidad] = useState(1);
+  useEffect(() => {
+      products(producto, cantidad)
+  }, [cantidad, producto])
+  
   const aumentarcantiad = () => {
     setcantidad(cantidad + 1);
+
   };
   const disminuircantidad = () => {
     if (cantidad <=1) {
@@ -19,7 +25,8 @@ const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
     }
     
   };
-   products(producto, cantidad)
+  
+
 
   return (
     <li className="list-group-item d-flex justify-content-between">

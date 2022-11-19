@@ -1,33 +1,17 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../auth/Context'
-import { useFetchyRef } from '../../data/hooks/useFethc'
-import { useForm } from '../../hooks/useForm'
+
 
 export const VentasCLiente = () => {
-    const{user} = useContext(AuthContext)
+    const{user, products } = useContext(AuthContext)
     console.log(user);
-    const {Values, HandleInputChange} = useForm({
-        userId: user.id,
-        nombre: user.user,
-        apellido:user.apellido,
-        email:user.email,
-        telefono:user.tel,
-        direccion:user.dir,
-        ciudad:user.ciudad,
-        productos: [],
-        total:0,
-        fechaVenta: toString( new Date() ),
-    })
+    console.log(products.id);
 
-    const {userId, nombre, apellido, email, telefono, direccion, ciudad, productos, total, fechaVenta} = Values;
-
-    const HandleSubmit = (e) => {
-        e.preventDefault();
-    }
 
     const HandleClick = (e) => {
-        let url = 'http://localhost:5000/api/sales';
         e.preventDefault();
+        let url = 'http://localhost:5000/api/sales';
+       
         const newVenta = {
             IdVendedor: "00001",
             NombreVendedor: "KodifiKados",
@@ -62,136 +46,35 @@ export const VentasCLiente = () => {
             CantidadVendida: 8,
         }
         console.log(newVenta);
-         /*Modelo de datos
-    IdVendedor: Number,
-    NombreVendedor: String,
-    ApellidoVendedor: String,
-    EmailVendedor: String,
-    IdComprador: Number,
-    NombreComprador: String,
-    ApellidoComprador: String,
-    EmailComprador: String,
-    IdProductos: {
-        NombreProducto: String,
-        DescripcionProducto: String,
-        PrecioProducto: Number,
-        CantidadProducto: Number,
-        CategoriaProducto: String,
-    },
-    FechaVenta: String,
-    CantidadVendida: Number,
-    TotalVenta: Number,
-   
-   */
-    const {data, loading, error} = useFetchyRef(url, 'POST', newVenta);
-    console.log(data);
-    console.log(loading);
-    console.log(error);
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(newVenta),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then( res => res.json() )
+        .then( data => console.log(data) )
+        .catch( err => console.log(err) )
+
     }
         
 
   return (
-    <form onChange={HandleSubmit}>
-        <p>{userId}</p>
-        <div className="form-group">
-            <label htmlFor="nombre">Nombre</label>
-            <input 
-            type="text" 
-            className="form-control" 
-            id="nombre" 
-            placeholder="Nombre"
-            value={nombre}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="apellido">Apellido</label>
-            <input
-            type="text"
-            className="form-control"
-            id="apellido"
-            placeholder="Apellido"
-            value={apellido}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-            type="email"
-            className="form-control"
-            id="email"
-            placeholder="Email"
-            value={email}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="telefono">Telefono</label>
-            <input
-            type="number"
-            className="form-control"
-            id="telefono"
-            placeholder="Telefono"
-            value={telefono}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="direccion">Direccion</label>
-            <input
-            type="text"
-            className="form-control"
-            id="direccion"
-            placeholder="Direccion"
-            value={direccion}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="ciudad">Ciudad</label>
-            <input
-            type="text"
-            className="form-control"
-            id="ciudad"
-            placeholder="Ciudad"
-            value={ciudad}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="productos">Productos</label>
-            <textarea
-            type="text"
-            className="form-control"
-            id="productos"
-            placeholder="Productos"
-            value={productos}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="total">Total</label>
-            <input
-            type="number"
-            className="form-control"
-            id="total"
-            placeholder="Total"
-            value={total}
-            onChange={HandleInputChange}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="estado">Estado</label>
-            <input
-            type="text"
-            className="form-control"
-            id="estado"
-            placeholder="Estado"
-            value={fechaVenta}
-            onChange={HandleInputChange}
-            />  
-        </div>
+    <form>
+        <p>{user.id}</p>
+        <p>{user.user}</p>
+        <p>{user.apellido}</p>
+        <p>{user.email}</p>
+        <p>{user.tel}</p>
+        <p>{user.dir}</p>
+        <p>{user.ciudad}</p>
+        <p>{products.product}</p>
+        <p>{products.precio}</p>
+        <p>{products.cantidadVenta}</p>
+        <p>{products.descripcion}</p>
+        <p>{products.categoria}</p>
+        <p>{products.total}</p>
         <button type="submit" onClick={ HandleClick } className="btn btn-primary">Submit</button>
 
     </form>

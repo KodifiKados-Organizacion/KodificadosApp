@@ -77,6 +77,7 @@ export const AuthProvider = ({children}) => {
                 categoria: products.Categoria,
                 descripcion: products.Descripcion,
                 cantidadVenta: cantidad,
+                total: products.Precio * cantidad,
             }
         }
         dispatch( action )
