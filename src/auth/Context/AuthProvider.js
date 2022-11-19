@@ -66,7 +66,21 @@ export const AuthProvider = ({children}) => {
         }
         dispatch( action )
     }
-
+    const products = ( products = {}, cantidad = 1 ) => {
+        const action = {
+            type: types.products,
+            payload: {
+                product: products.Nombre,
+                precio: products.Precio,
+                id: products._id,
+                stock: products.Stock,
+                categoria: products.Categoria,
+                descripcion: products.Descripcion,
+                cantidadVenta: cantidad,
+            }
+        }
+        dispatch( action )
+    }
   
 
   return (
@@ -74,8 +88,8 @@ export const AuthProvider = ({children}) => {
         ...state,
         login: login, 
         logout: logout,
-        register: register
-
+        register: register,
+        products: products
     }}>
         { children }
     </AuthContext.Provider>

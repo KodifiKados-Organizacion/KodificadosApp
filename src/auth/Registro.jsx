@@ -22,9 +22,9 @@ const Registro = () => {
     Ciudad: "",
     Departamento: "",
     Direccion: "",
-    CodPostal: ""
+    CodPostal: "",
   });
-  const { Nombre, Apellidos,  Password, VPassword,  Telefono, Email, Ciudad, Departamento, Direccion, CodPostal }= formValues
+  const { Nombre, Apellidos,  Password, VPassword,  Telefono, Email, Ciudad, Departamento, Direccion, CodPostal}= formValues
   const HandleSubmit = (event) => {
     event.preventDefault();
   };
@@ -61,11 +61,12 @@ const Registro = () => {
         return alert("La direccion debe tener al menos 3 caracteres");
       }
       
-      console.log(formValues);
-      setRegistro(formValues);
+      console.log( formValues );
+      setRegistro( formValues );
       console.log(Registro);
       
     url = "http://localhost:5000/api/register";
+    if(Registro.Nombre !== undefined && Registro.Apellidos !== undefined && Registro.Password !== undefined && Registro.VPassword !== undefined && Registro.Telefono !== undefined && Registro.Email !== undefined && Registro.Ciudad !== undefined && Registro.Departamento !== undefined && Registro.Direccion !== undefined && Registro.CodPostal !== undefined){
     fetch(url, {
       method: "POST",
       headers: {
@@ -83,8 +84,10 @@ const Registro = () => {
       .catch((err) => {
       alert("Error "+ err +" al registrar");
     })
+  }else{
+    alert("Por favor llene todos los campos");
+  }
   };
-
 
   return (
     <div className="container-registro">

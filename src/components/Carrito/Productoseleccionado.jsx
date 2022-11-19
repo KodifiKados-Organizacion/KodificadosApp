@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { useState } from "react";
+import { AuthContext } from "../../auth/Context";
 
 const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
+  const { products } = useContext(AuthContext);
   const [cantidad, setcantidad] = useState(1);
   const aumentarcantiad = () => {
     setcantidad(cantidad + 1);
@@ -16,7 +19,7 @@ const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
     }
     
   };
-
+   products(producto, cantidad)
 
   return (
     <li className="list-group-item d-flex justify-content-between">
