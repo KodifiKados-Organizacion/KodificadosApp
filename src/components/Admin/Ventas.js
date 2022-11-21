@@ -1,6 +1,13 @@
+import { useFetchyRef } from '../../data/hooks/useFethc';
 import '../../styles/components/ventas.css'
 
 export const Ventas = () => {
+    const {data, loading, error} = useFetchyRef('http://localhost:5000/api/sales', 'GET');
+    console.log(data);
+    console.log(loading);
+    console.log(error);
+
+
   return (
     <div className='container_ventas'>
         <h1>Ventas</h1>

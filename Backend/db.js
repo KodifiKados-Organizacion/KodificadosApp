@@ -7,8 +7,8 @@ import mongoose from 'mongoose';
 import { ProductModel } from './models/products.js'
 import { RegisterModel } from './models/register.js'
 import { SaleModel } from "./models/sales.js"
- import { CategoryModel } from "./models/categoriesModel.js";
-
+import { CategoryModel } from "./models/categoriesModel.js";
+import { ProductSaleModel } from "./models/productsSales.js";
 
 
 
@@ -40,6 +40,14 @@ async function getRegister(id) {
     return register;
 }
 
+// metodo para obtener un registro por email
+async function getRegisterByEmail(email) {
+    const register = await RegisterModel
+        .find({Email: email})
+        .select({ Nombre: 1, Apellido: 1, Email: 1, Password: 1, Telefono: 1, Direccion: 1, Ciudad: 1, Estado: 1, CodigoPostal: 1, FechaIngreso: 1, Admin: 1 });
+    return register;
+}
+
 // metodo para actualizar un registro
 async function updateRegister(id, register) {
     const result = await RegisterModel.updateOne({ _id: id }, {
@@ -54,7 +62,7 @@ async function deleteRegister(id) {
 }
 
 // Exports Functiuons Register
-export { createRegister, getRegisters, getRegister, updateRegister, deleteRegister };
+export { createRegister, getRegisters, getRegister, getRegisterByEmail, updateRegister, deleteRegister };
 
 // consultas
 // metodo para crear un Producto
@@ -75,7 +83,7 @@ async function getProducts() {
 // metodo para obtener un Producto
 async function getProduct(id) {
     const product = await ProductModel
-        .find({ _id: id })
+        .findById({ _id: id })
     return product
 }
 
@@ -154,6 +162,7 @@ async function createSale(sale) {
     return result;
 }
 
+
 //Metodo para obtener todos las Ventas
 async function getSales() {
     const sales = await SaleModel
@@ -185,5 +194,42 @@ async function deleteSale(id) {
 
 // Exports Functiuons Sale
 export { createSale, getSales, getSale, updateSale, deleteSale };
+
+
+//metedo para obtener los productos de la venta
+async function getProductsSale(id) {
+    const ProductsSales = await ProductSaleModel
+        .findById({ Id: id })
+        .select({ IdVenta: 1, IdProducto: 1, NombreProducto: 1, PrecioProducto: 1, CantidadProducto: 1, TotalProducto: 1 });
+    return ProductsSales;
+}
+
+//metodo para crear un producto de la venta
+async function createProductSale(productSale) {
+    const productSaleObject = new ProductSaleModel(productSale);
+    const result = await productSaleObject.save();
+    return result;
+}
+
+//metodo para actualizar un producto de la venta
+async function updateProductSale(id, productSale) {
+    const result = await ProductSaleModel
+        .updateOne({ _id: id }, {
+            $set: productSale
+        });
+    return result;
+}
+
+//metodo para eliminar un producto de la venta
+async function deleteProductSale(id) {
+    const result = await ProductSaleModel
+        .deleteOne({ _id: id });
+    return result;
+}
+
+// Exports Functiuons ProductSale
+export { createProductSale, getProductsSale, updateProductSale, deleteProductSale };
+
+
 
 

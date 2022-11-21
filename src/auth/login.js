@@ -20,7 +20,7 @@ export const Login = () => {
   const HandleClick = (e) => {
     e.preventDefault();
     login(formValues);
-        Navigate('/Home');
+    Navigate('/Home');
   };
 
   return (

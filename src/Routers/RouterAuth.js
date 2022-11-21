@@ -10,10 +10,13 @@ import { AuthContext } from '../auth/Context'
 
 
 export const RouterAuth = () => {
+const  user  = JSON.parse(localStorage.getItem('user')); 
 const {logged} = useContext(AuthContext); 
 let isAuth = logged;
-console.log(logged)
-
+if(user){
+  isAuth = true;
+}
+console.log(isAuth);
   return (
     <Routes>
         { isAuth === false ?<Route path="Login" element={<Login />} />: null}

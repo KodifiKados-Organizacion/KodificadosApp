@@ -8,6 +8,9 @@ const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
   const [cantidad, setcantidad] = useState(1);
   useEffect(() => {
       products(producto, cantidad)
+      const productSale = [producto, cantidad];
+      console.log(productSale);
+      localStorage.setItem('products', JSON.stringify(productSale));
   }, [cantidad, producto])
   
   const aumentarcantiad = () => {

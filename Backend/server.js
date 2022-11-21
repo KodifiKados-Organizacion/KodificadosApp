@@ -6,6 +6,7 @@ import { Routerproducts } from "./routes/product.js";
 import {routerRegister}from "./routes/register.js"
 import { RouterSale } from "./routes/sale.js";
 import { Routercategorys } from "./routes/categoriaRouter.js";
+import { RouterProductSale } from "./routes/productsSales.js";
 
 const port=5000;
 const app = express();
@@ -26,14 +27,12 @@ app.use("/api/register",routerRegister)
 app.use("/api/products",Routerproducts)
 app.use("/api/categorys",Routercategorys)
 app.use("/api/sales",RouterSale)
+app.use("/api/productsSales",RouterProductSale)
 
 
 mongoose.connect('mongodb+srv://KodifiKados:KodifiK2_2022@kodifikados.yvnuqi1.mongodb.net/KodifiKados?retryWrites=true&w=majority', {})
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Could not connect to MongoDB...' + err));
-
-
-
 
 
 

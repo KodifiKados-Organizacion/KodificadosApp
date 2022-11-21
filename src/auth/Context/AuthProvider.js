@@ -1,4 +1,5 @@
 import { useReducer } from 'react'
+import getData from '../../data/Assets/getData'
 import { useFetchyRef } from '../../data/hooks/useFethc'
 import { types } from '../Types/types'
 import { AuthContext } from './AuthContext'
@@ -8,18 +9,22 @@ const initialState = {
     user: null,
     logged: false
 }
+const init = () => {
+    return JSON.parse(localStorage.getItem('user')) || { logged: false }
+}
 
 export const AuthProvider = ({children}) => {
 
-    const [ state, dispatch] = useReducer( authReducer, initialState )
-    const url = 'http://localhost:5000/api/register';
-    const { data, loading, error } = useFetchyRef( url, 'GET' );
-    console.log(data);
-    console.log(loading);
-    console.log(error);
+    const [ state, dispatch] = useReducer( authReducer, initialState, init )
+  
     const login = async ( user = {} ) => {
+        const url = 'http://localhost:5000/api/register/Login';
         console.log(user);
-        const usuario = data.filter( param => param.Email === user.Email );
+        const data = await getData(url, user);
+        const userAuth= await data.data[0]
+        localStorage.setItem('user', JSON.stringify(userAuth));
+        const usuario = await data.data;
+        localStorage.setItem('user', JSON.stringify(usuario[0]));
         console.log(usuario);
         console.log(usuario[0].Password);
         if( usuario[0].Password === user.Password ){
@@ -44,6 +49,7 @@ export const AuthProvider = ({children}) => {
     }
 
     const logout = () => {
+        localStorage.removeItem('user');
         const action = {
             type: types.logout
         }
@@ -67,19 +73,21 @@ export const AuthProvider = ({children}) => {
         dispatch( action )
     }
     const products = ( products = {}, cantidad = 1 ) => {
+        const prodSale={
+            product: products.Nombre,
+            precio: products.Precio,
+            id: products._id,
+            stock: products.Stock,
+            categoria: products.Categoria,
+            descripcion: products.Descripcion,
+            cantidadVenta: cantidad,
+            total: products.Precio * cantidad,
+        }
         const action = {
             type: types.products,
-            payload: {
-                product: products.Nombre,
-                precio: products.Precio,
-                id: products._id,
-                stock: products.Stock,
-                categoria: products.Categoria,
-                descripcion: products.Descripcion,
-                cantidadVenta: cantidad,
-                total: products.Precio * cantidad,
-            }
+            payload: prodSale
         }
+        localStorage.setItem('products', JSON.stringify(prodSale));
         dispatch( action )
     }
   

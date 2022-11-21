@@ -37,23 +37,25 @@ Routerproducts.get("/", async (req, res) => {
     }
   )
   .put(
-    "/:id",
+    "/update",
     body("Nombre").notEmpty(),
     body("Precio").notEmpty(),
     body("PrecioVenta").notEmpty(),
     body("Cantidad").notEmpty(),
     async (req, res) => {
+      const id = req.body._id;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         console.log("JSON.stringify(errors)");
         return res.status(400).json({ errors: errors.array() });
       }
-      const data = await updateProduct(req.params.id, req.body);
+      const data = await updateProduct(id, req.body);
       res.status(200).json(data);
     }
   )
-  .delete("/", (req, res) => {
-    let productos = new ProductModel().find({ Nombre: "Producto 1" });
+  .delete("/delete", (req, res) => {
+    const id = req.body._id;
+    let productos = new ProductModel().find({ _id: id});
     console.log(productos);
   });
 

@@ -1,17 +1,14 @@
 import mongoose from 'mongoose';
 const SaleSchema = mongoose.Schema({
-    IdVendedor: Number,
     NombreVendedor: String,
     ApellidoVendedor: String,
     EmailVendedor: String,
-    IdComprador: Number,
-    NombreComprador: String,
-    ApellidoComprador: String,
-    EmailComprador: String,
-    TelComprador: String,
-    DirecionComprador: String,
+    NombreCliente: String,
+    ApellidoCliente: String,
+    EmailCliente: String,
+    TelCliente: String,
+    DirCliente: String,
     CiudadCompra: String,
-    IdProductos: [],
     FechaVenta: String,
     CantidadVendida: Number,
     TotalVenta: Number,
@@ -20,3 +17,4 @@ const SaleSchema = mongoose.Schema({
 // modelo de Ventas
 const SaleModel = mongoose.model('Venta', SaleSchema);
 export{SaleModel}
+
