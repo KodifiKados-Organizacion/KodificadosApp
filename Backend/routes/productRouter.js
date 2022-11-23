@@ -1,6 +1,6 @@
 import express from "express";
 import { ProductModel } from "../models/products.js";
-import { body, validationResult } from "express-validator";
+import { body, check, validationResult } from "express-validator";
 import { getProducts, createProduct, updateProduct } from "../db.js";
 
 let Routerproducts = express.Router();
@@ -15,10 +15,13 @@ Routerproducts.get("/", async (req, res) => {
 })
   .post(
     "/",
-    body("Nombre").notEmpty(),
-    body("Precio").notEmpty(),
-    body("PrecioVenta").notEmpty(),
-    body("Cantidad").notEmpty(),
+    [
+      check("Nombre","El Nombre del Producto es Requerido").notEmpty(),
+      check("Precio","El Precio del Producto es Requerido").notEmpty(),
+      check("PrecioVenta","El  Producto debe Tener un precio de  venta").notEmpty(),
+      check("Stock","Debes Agregar La cantidad  en Stock").notEmpty()
+      
+    ] ,
     async (req, res) => {
       try {
 
@@ -38,10 +41,14 @@ Routerproducts.get("/", async (req, res) => {
   )
   .put(
     "/update",
-    body("Nombre").notEmpty(),
-    body("Precio").notEmpty(),
-    body("PrecioVenta").notEmpty(),
-    body("Cantidad").notEmpty(),
+    [
+      check("Nombre","El Nombre del Producto es Requerido").notEmpty(),
+      check("Nombre","Este producto ya existe").exists(),
+      check("Precio","El Precio del Producto es Requerido").notEmpty(),
+      check("PrecioVenta","El  Producto debe Tener un precio de  venta").notEmpty(),
+      check("Stock","Debes Agregar La cantidad  en Stock").notEmpty()
+      
+    ] ,
     async (req, res) => {
       const id = req.body._id;
       const errors = validationResult(req);

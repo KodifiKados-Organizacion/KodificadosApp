@@ -76,7 +76,7 @@ async function createProduct(product) {
 async function getProducts() {
     const products = await ProductModel
         .find()
-        .select({ Nombre: 1, Descripcion: 1, Precio: 1, PrecioVenta: 1, Cantidad: 1, Categoria: 1, Imagen: 1, FechaIngreso: 1, });
+        .select({ Nombre: 1, Descripcion: 1, Precio: 1, PrecioVenta: 1, Cantidad: 1,Stock:1, Categoria: 1, Imagen: 1, FechaIngreso: 1, });
     return products;
 }
 
@@ -108,7 +108,7 @@ async function deleteProduct(id) {
 }
 
 // Exports Functiuons Product
-export { createProduct, getProducts, getProduct, updateProduct, deleteProduct };
+export { createProduct, getProducts, getProduct, updateProduct, deleteProduct,getCategoryforName };
 
 // esquema de Categoria
 
@@ -130,6 +130,10 @@ async function getCategories() {
         .select({ Nombre: 1, Descripcion: 1, Imagen: 1 });
     return categories;
 }
+ async function  getCategoryforName(Nombre){
+    const category=await CategoryModel.findOne({Nombre:Nombre})
+    return category;
+ }
 
 // metodo para obtener una Categoria
 async function getCategory(id) {

@@ -23,7 +23,7 @@ RouterSale.get("/:id",async (req,res)=>{
 RouterSale.post("/NewSale",[
       check('NombreVendedor', 'Nombre es obligatorio').not().notEmpty(),
       check('ApellidoVendedor', 'Apellido es obligatorio').notEmpty(),
-      check('EmailVendedor', 'Telefono es obligatorio').isEmail(),
+      check('EmailVendedor', 'Email es obligatorio').isEmail(),
       check('NombreCliente', 'Nombre es obligatorio').not().notEmpty(),
       check('ApellidoCliente', 'Apellido es obligatorio').notEmpty(),
       check('EmailCliente', 'Email es obligatorio').isEmail(),

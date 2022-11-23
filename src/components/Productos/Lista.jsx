@@ -4,6 +4,7 @@ import Cards from "./Cards";
 import Carrito from "../Carrito/Carrito";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
+import Listacategorias from "../Categoria/Listacategorias";
 
 const Lista = (props) => {
   const [carrito, setcarrito] = useState([]);
@@ -14,6 +15,7 @@ const Lista = (props) => {
   
    const data =await fetch("http://localhost:5000/api/products")
    const resp=await(data.json())
+  
   
    setproductos(resp)
  }
@@ -27,7 +29,15 @@ const Lista = (props) => {
       <nav className="nav">
         {props.buttom === "Agregar" ? 
         <>
-        <button>Categorias</button>
+
+
+
+
+        
+
+
+
+       
         <button
           type="button"
           className="btn btn-primary position-relative"
@@ -41,8 +51,9 @@ const Lista = (props) => {
 
       {/* AFMT */}
       <h1>Catalogo</h1>
+      <a href="Admin/AgregarProducto">Agregar</a>
 
-      <main>
+      {/*<main>
         <h1>Productos</h1>
         <div className="products">
         {PRODUCTS.map(product => (
@@ -65,8 +76,10 @@ const Lista = (props) => {
         ))
         }
         </div>
-      </main>
+      </main>*/}
       {/* AFMT */}
+
+      
 
       <div className="container-products">
         {productos.map((producto) => (

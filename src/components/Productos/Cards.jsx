@@ -13,9 +13,9 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
             case "Editar": 
           
                 if(producto !== undefined){
-                    setSearchParams({"producto": producto.id});
+                    setSearchParams({"producto": producto._id});
                     console.log(searchParams);
-                    window.location.href = "/Admin/EditProduct?producto=" + producto.id;
+                    window.location.href = "/Admin/EditProduct?producto=" + producto._id;
                 }else{
                     console.log("no se pudo editar")
                 }

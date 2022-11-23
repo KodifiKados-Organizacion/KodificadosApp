@@ -2,7 +2,7 @@ import  express, { json } from "express";
 
 import mongoose from 'mongoose';
  import cors from "cors"
-import { Routerproducts } from "./routes/product.js";
+import { Routerproducts } from "./routes/productRouter.js";
 import {routerRegister}from "./routes/register.js"
 import { RouterSale } from "./routes/sale.js";
 import { Routercategorys } from "./routes/categoriaRouter.js";

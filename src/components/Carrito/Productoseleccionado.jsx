@@ -37,7 +37,7 @@ const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
       <div className="d-flex">
         <img src={producto.Imagen} alt="" width={50} />{" "}
         <div><p> Nombre :{producto.Nombre}</p>
-        <p className="text-secondary"> <small>Cantidad Disponible({producto.Cantidad})</small></p>
+        <p className="text-secondary"> <small>Cantidad Disponible({producto.Stock})</small></p>
         
         <small className="text-secondary">precio unitario:$ {producto.PrecioVenta}</small>
         </div>

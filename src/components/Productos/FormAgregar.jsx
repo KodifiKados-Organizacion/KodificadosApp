@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { submitProduct } from "../../data/services/productsServices";
 import { getCategoriesAll } from "../../data/services/categoryServices.js";
 import { useState } from "react";
+import { Navigate } from "react-router";
 
 const FormAgregar = () => {
   const [categorias, setcategorias] = useState([]);
@@ -10,7 +11,8 @@ const FormAgregar = () => {
   const [descripcion, setDescripcion] = useState();
   const [precio, setPrecio] = useState();
   const [precioVenta, setPrecioVenta] = useState();
-  const [cantidad, setCantidad] = useState();
+  const [stock, setstock] = useState();
+  const [cantidad, setCantidad] = useState(1);
   const [categoria, setCategoria] = useState();
   const [imagen, setimagen] = useState();
   const [errors, seterrors] = useState([]);
@@ -42,8 +44,8 @@ const FormAgregar = () => {
       return;
     }
 
-    if (cantidad === "" || cantidad === undefined) {
-      alert("agrega la cantidad ");
+    if (stock === "" || stock === undefined) {
+      alert("agrega la cantidad en stock");
       return;
     }
     if (categoria === "" || categoria === undefined) {
@@ -56,7 +58,8 @@ const FormAgregar = () => {
       Descripcion: descripcion,
       Precio: precio,
       PrecioVenta: precioVenta,
-      Cantidad: cantidad,
+      Stock: stock,
+      Cantidad:cantidad,
       Categoria: categoria,
       Imagen: imagen,
     });
@@ -66,6 +69,7 @@ const FormAgregar = () => {
       return;
     }
     alert("Producto " + resp.Nombre + " Agregado correctamente..");
+    Navigate('/Admin');
   };
   return (
     <div>
@@ -140,7 +144,7 @@ const FormAgregar = () => {
                 type="number"
                 className="form-control"
                 placeholder="Cantidad en stock"
-                onChange={(e) => setCantidad(e.target.value)}
+                onChange={(e) => setstock(e.target.value)}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
               />
