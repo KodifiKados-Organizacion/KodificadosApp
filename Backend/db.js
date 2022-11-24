@@ -166,7 +166,6 @@ async function createSale(sale) {
     return result;
 }
 
-
 //Metodo para obtener todos las Ventas
 async function getSales() {
     const sales = await SaleModel

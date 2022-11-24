@@ -6,7 +6,7 @@ const SaleSchema = mongoose.Schema({
     NombreCliente: String,
     ApellidoCliente: String,
     EmailCliente: String,
-    TelCliente: String,
+    TelCliente: Number,
     DirCliente: String,
     CiudadCompra: String,
     FechaVenta: String,

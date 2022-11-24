@@ -1,8 +1,8 @@
 
-const getData = ( url, user ) => {
+const getData = ( url, datos ) => {
     const data = fetch(url, {
         method: 'POST',
-        body: JSON.stringify(user),
+        body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json'
         }

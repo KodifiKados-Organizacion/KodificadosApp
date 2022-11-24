@@ -13,8 +13,9 @@ import{getRegisters,createRegister, getRegisterByEmail, getRegister, updateRegis
     res.json(data)
 });
 
-routerRegister.get('/:id', async (req, res) => {
-    const data = await getRegister(req.params.id)
+routerRegister.post('/id', async (req, res) => {
+     const id = req.body.id;
+    const data = await getRegister(id);
 
     res.json(data)
 });

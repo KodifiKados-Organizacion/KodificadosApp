@@ -10,10 +10,13 @@ import { AuthContext } from '../auth/Context'
 
 
 export const RouterAuth = () => {
-const  user  = JSON.parse(localStorage.getItem('user')); 
-const {logged} = useContext(AuthContext); 
+const { user, logged } = useContext(AuthContext);
+
 let isAuth = logged;
-if(user){
+let userauth;
+{user? userauth = user  : userauth  = JSON.parse(localStorage.getItem('user'))}
+
+if(JSON.parse(localStorage.getItem('user'))){
   isAuth = true;
 }
 console.log(isAuth);

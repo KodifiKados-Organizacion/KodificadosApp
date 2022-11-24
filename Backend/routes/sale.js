@@ -1,5 +1,5 @@
  import  express from "express";
- import { body, check, validationResult } from "express-validator";
+ import { check, validationResult } from "express-validator";
  import { SaleModel } from "../models/sales.js";
 import { getSale,getSales,createSale,deleteSale,updateSale } from "../db.js";
 let RouterSale=express.Router();
@@ -34,15 +34,17 @@ RouterSale.post("/NewSale",[
       check('CantidadVendida', 'Cantidad es obligatorio').notEmpty(),
       check('TotalVenta', 'Total es obligatorio').notEmpty()      
 ],async(req,res)=>{
+      console.log(req.body);
       const errors = validationResult(req);
+      console.log(errors);
       if (!errors.isEmpty()) {
              return res.status(400).json({ errors: errors.array() });
       }
     const data = await createSale(req.body)
     if(data){
-            res.status(201).json({ok:true,msg:"Venta creada",data})
+            return res.status(201).json({ok:true,msg:"Venta creada",data})
       }else{
-            res.status(400).json({ok:false,msg:"Error al crear venta"})
+            return res.status(400).json({ok:false,msg:"Error al crear venta"})
       }
 })
 
