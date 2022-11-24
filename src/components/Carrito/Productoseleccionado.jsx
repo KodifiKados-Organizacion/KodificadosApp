@@ -3,13 +3,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../auth/Context";
 
-const Productoseleccionado = ({ producto ,quitarproductodecarrito}) => {
+const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
   const { products } = useContext(AuthContext);
   const [cantidad, setcantidad] = useState(1);
+
   useEffect(() => {
       products(producto, cantidad)
       const productSale = [producto, cantidad];
       console.log(productSale);
+    
       localStorage.setItem('products', JSON.stringify(productSale));
   }, [cantidad, producto])
   

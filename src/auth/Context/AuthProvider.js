@@ -7,7 +7,8 @@ import { authReducer } from './authReducer'
 
 const initialState = {
     user: null,
-    logged: false
+    logged: false,
+    productSale:[]
 }
 const init = () => {
     return JSON.parse(localStorage.getItem('user')) || { logged: false }

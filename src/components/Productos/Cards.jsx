@@ -1,13 +1,19 @@
+import { useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
+import { TYPES } from "../../actions/cardActions";
+import { cardInitialState, ProductReducer } from "../../hooks/reducer/ProductReducer";
 
 const Cards = ({ producto, setcarrito, carrito, buttom}) => {
   const [searchParams, setSearchParams] = useSearchParams();
+   const [state,dispatch]=useReducer(ProductReducer,cardInitialState)
     //let newproducto = [];
     const HandleClick = () => {
         switch (buttom) {
             case "Agregar":
               if(carrito.includes(producto))return alert("Tu producto ya fue agregado, modifica la cantidad desde el carrito..")
               setcarrito([...carrito, producto]);
+              dispatch({type:TYPES.ADD_TO_CARD,payload:producto})
+             
           
               break;
             case "Editar": 
