@@ -1,20 +1,15 @@
 import { useContext, useReducer, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../auth/Context";
+import { cardInitialState, ProductReducer } from "../../hooks/reducer/ProductReducer";
 import Productoseleccionado from "./Productoseleccionado";
 
 
- const reducer=(state=[],action)=>{
-    if(action.type==="agregar"){
-        return {...state,cantidad:state.cantidad+1}
-    }
-    return state;
- }
 
 const Carrito = ({ carrito, setcarrito }) => {
     
+ const [state,dispatch]=useReducer(ProductReducer,cardInitialState)
  
-   const [state,dispatch]=useReducer(reducer,carrito)
      
     
    let precioacumulado=0;
@@ -39,8 +34,7 @@ const Carrito = ({ carrito, setcarrito }) => {
                
                  <form onSubmit={EnviaVenta}>
 
-               <p className="text-primary" >{JSON.stringify(state)}</p>
-                {carrito.map((producto) => {
+                {state.card.map((producto) => {
                     return (<><Productoseleccionado   producto={producto} quitarproductodecarrito={quitarproductodecarrito}/>
                   <span className="text-success"><strong> { precioacumulado+=parseFloat(producto.PrecioVenta) }</strong></span>
                     </>);
