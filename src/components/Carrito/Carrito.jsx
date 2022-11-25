@@ -35,7 +35,7 @@ const Carrito = ({ carrito, setcarrito }) => {
                  <form onSubmit={EnviaVenta}>
 
                 {state.card.map((producto) => {
-                    return (<><Productoseleccionado   producto={producto} quitarproductodecarrito={quitarproductodecarrito}/>
+                    return (<><Productoseleccionado   key={producto._id} producto={producto} quitarproductodecarrito={quitarproductodecarrito}/>
                   <span className="text-success"><strong> { precioacumulado+=parseFloat(producto.PrecioVenta) }</strong></span>
                     </>);
                 })}

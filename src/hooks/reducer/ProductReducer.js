@@ -12,14 +12,26 @@ export function ProductReducer(state, action) {
       //   card:[...state.card,action.payload],
       // };
     }
-    case TYPES.UPDATE_ONE_COUNT :{
+    case TYPES.UPDATE_ONE_COUNT: {
+      //Buscar el producto 
 
-      const {_id,cantidad}=action.payload;
+      // const productofind = state.card.find((producto) => {
+      //   if (producto._id == action.payload._id) {
+      //     return producto.Cantidad = action.payload.cantidad
+      //   }
+      // })
 
-      const nuevo=state.card.find((producto)=>producto._id===_id?producto.cantidad=cantidad:null)
-alert(nuevo)
+      let listnw = state.card.map((producto) => {
 
-break
+        if (producto._id === action.payload._id) {
+          producto.Cantidad = action.payload.cantidad
+        }
+        return producto
+      })
+      state.card = listnw
+      //alert(JSON.stringify(productofind))
+      return state;
+      break
     }
     case TYPES.REMOVE_ONE_FROM_CARD: {
       break;

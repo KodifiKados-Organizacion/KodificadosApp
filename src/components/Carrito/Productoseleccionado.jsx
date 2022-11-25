@@ -1,11 +1,16 @@
 import { useContext } from "react";
+import { useReducer } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { TYPES } from "../../actions/cardActions";
 import { AuthContext } from "../../auth/Context";
+import { cardInitialState, ProductReducer } from "../../hooks/reducer/ProductReducer";
 
 const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
   const { products } = useContext(AuthContext);
   const [cantidad, setcantidad] = useState(1);
+  //LLamar Reducer
+  const [state,dispatch]= useReducer(ProductReducer,cardInitialState)
 
   useEffect(() => {
       products(producto, cantidad)
@@ -17,6 +22,7 @@ const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
   
   const aumentarcantiad = () => {
     setcantidad(cantidad + 1);
+    dispatch({type:TYPES.UPDATE_ONE_COUNT,payload:{_id:producto._id, cantidad:cantidad+1}})
 
   };
   const disminuircantidad = () => {
@@ -27,6 +33,7 @@ const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
       
     }else{
       setcantidad(cantidad - 1);  
+      dispatch({type:TYPES.UPDATE_ONE_COUNT,payload:{_id:producto._id, cantidad:cantidad-1}})
     }
     
   };
