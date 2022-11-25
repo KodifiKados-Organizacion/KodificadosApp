@@ -8,49 +8,45 @@ import Listacategorias from "../Categoria/Listacategorias";
 
 const Lista = (props) => {
   const [carrito, setcarrito] = useState([]);
-  const [productos,setproductos]=useState([])
+  const [productos, setproductos] = useState([]);
   const [productos_carro, setproductoscarro] = useState([]);
 
- const getProducts=async()=>{
-  
-   const data =await fetch("http://localhost:5000/api/products")
-   const resp=await(data.json())
-  
-  
-   setproductos(resp)
- }
-  useEffect(()=>{
-    getProducts()
-  },[])
- 
-  
+  const getProducts = async () => {
+    const data = await fetch("http://localhost:5000/api/products");
+    const resp = await data.json();
+
+    setproductos(resp);
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <div>
       <nav className="nav">
-        {props.buttom === "Agregar" ? 
-        <>
-
-
-
-
-        
-
-
-
-       
-        <button
-          type="button"
-          className="btn btn-primary position-relative"
-          data-bs-toggle="modal"
-          data-bs-target="#carrito"
-        >
-          {carrito.length}
-          <i className="ri-shopping-cart-fill"></i>
-        </button></>: <Link to='Ventas' className="btn btn-info"> <ion-icon name="cash-outline"></ion-icon> </Link>  }
+        {props.buttom === "Agregar" ? (
+          <>
+            <button
+              type="button"
+              className="btn btn-primary position-relative"
+              data-bs-toggle="modal"
+              data-bs-target="#carrito"
+            >
+              {carrito.length}
+              <i className="ri-shopping-cart-fill"></i>
+            </button>
+          </>
+        ) : (
+          <Link to="Ventas" className="btn btn-info">
+            {" "}
+            <ion-icon name="cash-outline"></ion-icon>{" "}
+          </Link>
+        )}
       </nav>
 
       {/* AFMT */}
       <h1>Catalogo</h1>
+     
       <a href="Admin/AgregarProducto">Agregar</a>
 
       {/*<main>
@@ -79,17 +75,14 @@ const Lista = (props) => {
       </main>*/}
       {/* AFMT */}
 
-      
-
       <div className="container-products">
         {productos.map((producto) => (
           <Cards
-          key={productos._id}
+            key={productos._id}
             producto={producto}
             setcarrito={setcarrito}
             carrito={carrito}
-            
-            buttom = {props.buttom}
+            buttom={props.buttom}
           />
         ))}
       </div>
@@ -104,10 +97,8 @@ const Lista = (props) => {
         <div className="modal-dialog  modal-xl">
           <div className="modal-content">
             <div className="modal-header text-primary">
-
-            
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-               Tu Carrito
+                Tu Carrito
               </h1>
               <button
                 type="button"
@@ -117,10 +108,12 @@ const Lista = (props) => {
               ></button>
             </div>
             <div className="modal-body">
-              {(carrito.length > 0) ? (
+              {carrito.length > 0 ? (
                 <Carrito carrito={carrito} setcarrito={setcarrito} />
               ) : (
-                <span className="text-danger">No hay productos en el carrito</span>
+                <span className="text-danger">
+                  No hay productos en el carrito
+                </span>
               )}
             </div>
             <div className="modal-footer">
@@ -131,7 +124,6 @@ const Lista = (props) => {
               >
                 Close
               </button>
-             
             </div>
           </div>
         </div>
