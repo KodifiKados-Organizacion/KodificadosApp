@@ -2,11 +2,13 @@ import { PRODUCTS } from "./../../data/products";
 import "../../styles/components/cards.css";
 import Cards from "./Cards";
 import Carrito from "../Carrito/Carrito";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import Listacategorias from "../Categoria/Listacategorias";
+import { AuthContext } from "../../auth/Context";
 
 const Lista = (props) => {
+  const user = JSON.parse(localStorage.getItem('user'));
   const [carrito, setcarrito] = useState([]);
   const [productos, setproductos] = useState([]);
   const [productos_carro, setproductoscarro] = useState([]);
@@ -18,6 +20,7 @@ const Lista = (props) => {
     setproductos(resp);
   };
   useEffect(() => {
+    
     getProducts();
   }, []);
 
@@ -46,8 +49,10 @@ const Lista = (props) => {
 
       {/* AFMT */}
       <h1>Catalogo</h1>
+
+      {user.Admin?<a href="Admin/AgregarProducto">Agregar</a>:null}
      
-      <a href="Admin/AgregarProducto">Agregar</a>
+      
 
       {/*<main>
         <h1>Productos</h1>

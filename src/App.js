@@ -1,7 +1,7 @@
 import './styles/App.css';
 import {Header} from './components/Header/Header';
 import { Footer } from './components/Footer/Footer'
-import { RouterAuth } from './routers/RouterAuth';
+import { RouterAuth } from './Routers/RouterAuth';
 //import { Router } from './routers/Router';
 
 function App() {

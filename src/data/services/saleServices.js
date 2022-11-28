@@ -1,4 +1,4 @@
-var URL = "http://localhost:5000/api/sales";
+var URL = "http://localhost:5000/api/productsSales";
 
  export const createsale=async(sale)=>{
 alert(JSON.stringify(sale))

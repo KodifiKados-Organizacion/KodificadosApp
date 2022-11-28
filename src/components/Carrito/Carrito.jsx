@@ -21,21 +21,22 @@ const Carrito = ({ carrito, setcarrito }) => {
 
     setcarrito(newcarrito);
   };
-  const EnviaVenta = (e) => {
+  const EnviaVenta = async(e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem('user'));
     const cardInfosend={
-        IdCliente:user._id,
+        userid:user._id,
         Nombre:user.Nombre,
         Apellido:user.Apellido,
         Email:user.Email,
         Ciudad:user.Ciudad,
         Direccion:user.Direccion,
-        carrito:state.card
+        ventas:state.card
 
     }
     
-    createsale(cardInfosend)
+   const data = await createsale(cardInfosend)
+   alert(JSON.stringify(data))
     //Navigate('/Cliente/Ventas');
   };
 

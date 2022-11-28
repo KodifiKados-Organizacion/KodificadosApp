@@ -199,6 +199,7 @@ async function deleteSale(id) {
 export { createSale, getSales, getSale, updateSale, deleteSale };
 
 
+
 //metedo para obtener los productos de la venta
 async function getProductsSale(id) {
     const ProductsSales = await ProductSaleModel
