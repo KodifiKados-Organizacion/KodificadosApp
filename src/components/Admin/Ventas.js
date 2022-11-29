@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFetchyRef } from '../../data/hooks/useFethc';
 import '../../styles/components/ventas.css'
+ import { getSales } from "../../data/services/saleServices.js";
 
 export const Ventas = () => {
+ const [ventas,setventas]=useState([])
     const {data, loading, error} = useFetchyRef('http://localhost:5000/api/productsSales', 'GET');
-    const [sale,setsale]=useState(data);
+
+    useEffect(()=>{
+        getSales().then(resp=>{
+            setventas(resp)
+        
+        })
+    },[])
+
+    
+    
+
+ 
     console.log(data);
     console.log(loading);
     console.log(error);
@@ -38,10 +51,14 @@ export const Ventas = () => {
                     <td>$ 3.000.000</td>
                     <td>Finalizado</td>
                 </tr>
-                <tr>
-                    {sale}
+                
+                
+                    { ventas.map((venta)=>{
+                        return(<tr><td>{venta.createdAt}</td><td>{venta.createdAt}</td><td>{ venta.ventas.map((d)=>{ return(<span>{d.Nombre}</span>)})}</td></tr>)
+
+                    })}
                     
-                </tr>
+                
 
             </tbody>
         </table>
