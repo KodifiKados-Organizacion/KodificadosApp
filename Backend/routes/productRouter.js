@@ -1,7 +1,7 @@
 import express from "express";
 import { ProductModel } from "../models/products.js";
 import { body, check, validationResult } from "express-validator";
-import { getProducts, createProduct, updateProduct } from "../db.js";
+import { getProducts, createProduct, updateProduct,getProduct} from "../db.js";
 
 let Routerproducts = express.Router();
 
@@ -12,6 +12,14 @@ Routerproducts.get("/", async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+}).get("/:id",async(req,res)=>{
+  try {
+    const data = await getProduct(req.params.id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+
 })
   .post(
     "/",
@@ -59,7 +67,9 @@ Routerproducts.get("/", async (req, res) => {
       const data = await updateProduct(id, req.body);
       res.status(200).json(data);
     }
-  )
+  ).patch("/update",(req,res)=>{
+    
+  })
   .delete("/delete", (req, res) => {
     const id = req.body._id;
     let productos = new ProductModel().find({ _id: id});

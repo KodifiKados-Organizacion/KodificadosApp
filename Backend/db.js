@@ -201,6 +201,13 @@ export { createSale, getSales, getSale, updateSale, deleteSale };
 
 
 //metedo para obtener los productos de la venta
+async function getProductsSales() {
+    const sales = await ProductSaleModel
+    .find()
+    .select();
+return sales
+}
+//metedo para obtener los productos de la venta
 async function getProductsSale(id) {
     const ProductsSales = await ProductSaleModel
         .findById({ Id: id })
@@ -232,7 +239,7 @@ async function deleteProductSale(id) {
 }
 
 // Exports Functiuons ProductSale
-export { createProductSale, getProductsSale, updateProductSale, deleteProductSale };
+export { createProductSale, getProductsSale, updateProductSale, deleteProductSale ,getProductsSales};
 
 
 

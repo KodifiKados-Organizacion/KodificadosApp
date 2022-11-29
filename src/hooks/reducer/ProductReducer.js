@@ -1,3 +1,4 @@
+
 import { TYPES } from "../../actions/cardActions";
 
 export const cardInitialState = {
@@ -6,11 +7,11 @@ export const cardInitialState = {
 export function ProductReducer(state, action) {
   switch (action.type) {
     case TYPES.ADD_TO_CARD: {
-   state.card.push(action.payload);
-return state
+      state.card.push(action.payload);
+      return state
     }
     case TYPES.UPDATE_ONE_COUNT: {
-      
+
       let listnw = state.card.map((producto) => {
 
         if (producto._id === action.payload._id) {
@@ -19,14 +20,16 @@ return state
         return producto
       })
       state.card = listnw
-      
+
       return state;
       break;
     }
     case TYPES.REMOVE_ONE_FROM_CARD: {
 
-      const nwproduct=state.card.filter((producto)=>producto._id!=action.payload._id)
-      state.card=nwproduct;
+
+      let nwproduct = state.card.filter((producto) => producto._id !== action.payload._id)
+      
+      state.card = nwproduct;
       return state;
       break;
 

@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
 import { TYPES } from "../../actions/cardActions";
 import { cardInitialState, ProductReducer } from "../../hooks/reducer/ProductReducer";
+ import { updateProduct } from "../../data/services/productsServices.js";
 
 const Cards = ({ producto, setcarrito, carrito, buttom}) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +20,7 @@ const Cards = ({ producto, setcarrito, carrito, buttom}) => {
             case "Editar": 
           
                 if(producto !== undefined){
-                    setSearchParams({"producto": producto._id});
+                    setSearchParams({"producto": producto});
                     console.log(searchParams);
                     window.location.href = "/Admin/EditProduct?producto=" + producto._id;
                 }else{

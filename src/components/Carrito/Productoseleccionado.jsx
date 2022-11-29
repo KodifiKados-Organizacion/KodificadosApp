@@ -9,6 +9,7 @@ import { cardInitialState, ProductReducer } from "../../hooks/reducer/ProductRed
 const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
   const { products } = useContext(AuthContext);
   const [cantidad, setcantidad] = useState(1);
+  const [stockdisponible,setstockdisponible]=useState(true)
   //LLamar Reducer
   const [state,dispatch]= useReducer(ProductReducer,cardInitialState)
 
@@ -21,6 +22,12 @@ const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
   }, [cantidad, producto])
   
   const aumentarcantiad = () => {
+
+    if(producto.Cantidad>producto.Stock){
+      setstockdisponible(false)
+      return;
+    }
+    setstockdisponible(true)
     setcantidad(cantidad + 1);
     dispatch({type:TYPES.UPDATE_ONE_COUNT,payload:{_id:producto._id, cantidad:cantidad+1}})
 
@@ -32,6 +39,7 @@ const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
         setcantidad(1);
       
     }else{
+      setstockdisponible(true)
       setcantidad(cantidad - 1);  
       dispatch({type:TYPES.UPDATE_ONE_COUNT,payload:{_id:producto._id, cantidad:cantidad-1}})
     }
@@ -42,22 +50,14 @@ const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
 
   return (
     <li className="list-group-item d-flex justify-content-between">
-      {" "}
       <div className="d-flex">
         <img src={producto.Imagen} alt="" width={50} />{" "}
-        <div><p> Nombre :{producto.Nombre}</p>
+        <div><p>{producto.Nombre}</p>
         <p className="text-secondary"> <small>Cantidad Disponible({producto.Stock})</small></p>
-        
         <small className="text-secondary">precio unitario:$ {producto.PrecioVenta}</small>
         </div>
-        
-        
-      </div>{" "}
-      <span>
-        
-        
-        <p>v/t:{producto.PrecioVenta*cantidad}</p>
-      </span>
+      </div>
+      
       <button
         className="border border-0 text-primary"
         onClick={(e) => {
@@ -74,7 +74,13 @@ const Productoseleccionado = ({producto ,quitarproductodecarrito}) => {
           aumentarcantiad()}}
       >
         +
-      </button>{" "}
+      </button>
+      <span>
+        
+        
+        <h4>${producto.PrecioVenta*cantidad}</h4>
+        {stockdisponible?null:(<span className="text-danger">No Hay Stock Disponible</span>)}
+      </span>
       <a
         className="text-danger"
         onClick={(e) => quitarproductodecarrito(producto._id)}

@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useFetchyRef } from '../../data/hooks/useFethc';
 import '../../styles/components/ventas.css'
 
 export const Ventas = () => {
-    const {data, loading, error} = useFetchyRef('http://localhost:5000/api/sales', 'GET');
+    const {data, loading, error} = useFetchyRef('http://localhost:5000/api/productsSales', 'GET');
+    const [sale,setsale]=useState(data);
     console.log(data);
     console.log(loading);
     console.log(error);
@@ -37,24 +39,8 @@ export const Ventas = () => {
                     <td>Finalizado</td>
                 </tr>
                 <tr>
-                    <td>Pedro</td>
-                    <td>Sanchez</td>
-                    <td>pedros@gmail.com </td>
-                    <td>12/12/2021</td>
-                    <td>Asus VivoBook 14"</td>
-                    <td>1</td>
-                    <td>$ 4.000.000</td>
-                    <td>Finalizado</td>
-                </tr>
-                <tr>
-                    <td>Carlos</td>
-                    <td>Sanchez</td>
-                    <td>carloss@gamil.com   </td>
-                    <td>12/11/2022</td>
-                    <td>Audifonos Sony </td>
-                    <td>10</td>
-                    <td>$ 2.000.000</td>
-                    <td>Enviado</td>
+                    {sale}
+                    
                 </tr>
 
             </tbody>

@@ -15,9 +15,10 @@ const Carrito = ({ carrito, setcarrito }) => {
   let precioacumulado = 0;
   const Navigate = useNavigate();
 
-  const quitarproductodecarrito = (id) => {
+  const quitarproductodecarrito = (id) => {      
     dispatch({ type: TYPES.REMOVE_ONE_FROM_CARD, payload: { _id: id } });
-    const newcarrito = carrito.filter((producto) => producto._id != id);
+   
+    let newcarrito = carrito.filter((producto) => producto._id !== id);
 
     setcarrito(newcarrito);
   };
@@ -34,6 +35,7 @@ const Carrito = ({ carrito, setcarrito }) => {
         ventas:state.card
 
     }
+    
     
    const data = await createsale(cardInfosend)
    alert(JSON.stringify(data))
@@ -52,12 +54,7 @@ const Carrito = ({ carrito, setcarrito }) => {
                   producto={producto}
                   quitarproductodecarrito={quitarproductodecarrito}
                 />
-                <span className="text-success">
-                  <strong>
-                    {" "}
-                    {(precioacumulado += parseFloat(producto.PrecioVenta))}
-                  </strong>
-                </span>
+              
               </>
             );
           })}
