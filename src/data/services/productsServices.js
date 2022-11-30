@@ -29,6 +29,7 @@ export const getProductoFindId = async(id) => {
 }
 
  export const updateProduct=async(product)=>{
+  alert(JSON.stringify(product))
    const  data =await fetch(URL+"/update",{
     method: "PUT",
     headers: {
@@ -39,6 +40,6 @@ export const getProductoFindId = async(id) => {
       return;
     });
     const resp = await data.json();
-    return resp;
+    return alert(resp);
 
  }

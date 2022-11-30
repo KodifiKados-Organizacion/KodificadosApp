@@ -58,7 +58,8 @@ Routerproducts.get("/", async (req, res) => {
       
     ] ,
     async (req, res) => {
-      const id = req.body._id;
+      const id = req.body._id[0];
+      
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         console.log("JSON.stringify(errors)");

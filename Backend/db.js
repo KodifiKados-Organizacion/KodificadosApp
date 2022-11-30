@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { ObjectId } from 'mongoose';
 
 
 
@@ -94,8 +95,8 @@ async function getProduct(id) {
  }
 
 // metodo para actualizar un Producto
-async function updateProduct(id, product) {
-     const result = await ProductModel.updateOne({_id:id}, {
+async function updateProduct( id, product) {
+     const result = await ProductModel.updateOne({_id:id }, {
          $set: product
      });
    
