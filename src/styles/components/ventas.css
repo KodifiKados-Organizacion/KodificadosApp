@@ -1,4 +1,4 @@
-.container_ventas {
+/* .container_ventas {
     background-color: #1a1d21;
     color: white;
 }
@@ -6,8 +6,12 @@
 .tabla-ventas {
     width: 100%;
     height: 300px;
+    background-color:  rgba(37, 37, 37, 0.589);
     border-collapse: collapse;
-    border: 1px solid rgba(69, 69, 69, 0.589);
+    border: 1px solid rgba(66, 65, 65, 0.589);
     margin: 0 auto;
     margin-top: 20px;
 }
+table>tr,td{
+    border: 1px solid rgba(218, 203, 203, 0.589);
+} */
